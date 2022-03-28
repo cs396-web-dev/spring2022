@@ -9,16 +9,14 @@ due_date: 2022-04-04
 # slides:
 #     - url: https://docs.google.com/presentation/d/15fe9NmLRbORQNitruuuigvOpyCpOI4H-zIYEglGCdhM/edit?usp=sharing
 #       title: Intro to HTML & CSS
-exercise_url: lecture03.zip
+# exercise_url: lecture03.zip
 ---
 
 In today's lesson, we will go over HTML & CSS. Both are declarative languages that have an extensive vocabulary. Both take time to master.  If your goal is to become a strong web developer, it's worth spending some time learning some of the fundamental constructs for each language. While there are higher-level frameworks that abstract aspects of these languages, debugging "vanilla" HTML & CSS is inevitable and unavoidable. Please complete the following readings / video tutorials:
-
+<!-- 
 ## Slides
-* <a href="https://docs.google.com/presentation/d/15fe9NmLRbORQNitruuuigvOpyCpOI4H-zIYEglGCdhM/edit?usp=sharing" target="_blank">Intro to HTML & CSS</a>
+* <a href="https://docs.google.com/presentation/d/15fe9NmLRbORQNitruuuigvOpyCpOI4H-zIYEglGCdhM/edit?usp=sharing" target="_blank">Intro to HTML & CSS</a> -->
 
-## Lecture Video(s)
-* <a href="https://northwestern.zoom.us/rec/share/IfHcTEJqk5c_83zZnrwTjLr5dsOT6e5G6W4VSehHlJlaXnl4mhoWz49fC0_w4Ycx.CdphdDGTfRXYOBij?startTime=1641839423000" target="_blank">Recorded Lecture Video</a> (1:20:54)
 
 ## Readings
 
