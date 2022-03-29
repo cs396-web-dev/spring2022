@@ -90,7 +90,7 @@ A late penalty will be applied to all late homework submission. The late penalty
 #### Late Credits
 During COVID, we have decided to instill a system of "Late Credits." Over the course of the quarter, you have **7 "late credits"** that you can allocate across your homeworks, no questions asked. The purpose of these late credits is to give you some flexibility if you get sick or have a personal emergency, as Sarah and the course staff are having difficulty keeping track of all of the extension requests. 
 
-* Note that the last homework MUST be submitted on time (6/11) because of the Ceasar grading deadline.
+* Note that the last homework MUST be submitted on time (6/8) because of the Ceasar grading deadline.
 
 #### How do credits work?
 * 1 credit = 1 day
