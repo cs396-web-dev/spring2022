@@ -26,7 +26,7 @@ include_covid_statement: true
 Lectures, which are dedicated to introducing new topics, will take place every Monday and Wednesday.
 
 ### 2. Homework Assignments
-You will work on 8 individual homework assignments throughout the quarter. These assignments will all involve coding in a variety of different languages (e.g. HTML, CSS, JavaScript, Python, SQL, etc.) across the web stack.
+You will work on 6 individual homework assignments throughout the quarter. These assignments will all involve coding in a variety of different languages (e.g. HTML, CSS, JavaScript, Python, SQL, etc.) across the web stack.
 
 ### 3. Weekly Labs
 On Wednesdays, Thursdays, and Fridays, you will be completing labs -- which are designed to help you install, configure, and explore various ideas around building a ‘full stack web application.’ You will sign up for a lab slot during the first week of classes.
@@ -56,7 +56,7 @@ Consider office hours as an extension of the class, and we want you to rely on t
 Your final grade will be assessed as follows:
 
 ### 80% – Homework
-You will have 8 homework assignments that will each be worth roughly 10% of your grade (though some homework assigments are worth more than others).
+You will have 6 homework assignments that will each be worth roughly 10% of your grade (though some homework assigments are worth more than others).
 
 ### 20% – Labs
 Your lab grade will be based on the quality of your lab submissions. Your two lowest lab scores will be dropped, though we strongly encourage you to complete all of the labs.

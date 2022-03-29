@@ -2,7 +2,7 @@
 layout: module
 title: "CSS Layouts"
 type: lecture
-draft: 1
+draft: 0
 show_schedule: 1
 num: 4
 due_date: 2022-04-06
