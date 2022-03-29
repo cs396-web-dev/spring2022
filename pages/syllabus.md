@@ -16,9 +16,9 @@ include_covid_statement: true
 
 ## Learning Goals
 1. Learning how to design and develop a simple ‘full-stack’ web application (including interacting with a database, building a web server, implementing user authentication, and designing/building a front-end client).
-2. Building proficiency with commonly-used tools and technologies related to web development (e.g. GitHub, Flask, Heroku, Amazon S3, Web Sockets, testing frameworks like Mocha & Selenium, React, etc).
+2. Building proficiency with commonly-used tools and technologies related to web development (e.g. GitHub, Flask, Heroku, Web Sockets, testing frameworks, JavaScript frameworks like React, etc).
 3. Studying different architectures (e.g. REST & MVC), including how they are instantiated across a range of familiar web applications and APIs.
-4. Learning some fundamental UX/UI design principles (usability, accessibility, visual design, prototyping) in the context of web development.
+4. Learning some fundamental UX/UI design principles (accessibility, implementing layouts) in the context of web development.
 
 ## Course Format
 
@@ -35,9 +35,17 @@ On Wednesdays, Thursdays, and Fridays, you will be completing labs -- which are 
 
 | Name | Email |
 |--|--|--| 
+| Sanath Angalakudati | sanathangalakudati2022@u.northwestern.edu |
+| Roy Kim | minjaekim2022@u.northwestern.edu |
+| Jeff Lee | jefflee2023@u.northwestern.edu |
+| Jiahui Li | jiahuili2023@u.northwestern.edu |
+| Jonathan Liu | jonathanliu2022@u.northwestern.edu |
+| Seoyeon Park | seoyeonpark2022@u.northwestern.edu |
 | Carina Ramos | carinaramos2022@u.northwestern.edu |
-| Khalil Samoud | khalilsamoud2022@u.northwestern.edu |
-| Lucah Ueno | lucahueno2022@u.northwestern.edu |
+| Sophie Rollins | sophierollins2023@u.northwestern.edu |
+| Khalil Samoud	| khalilsamoud2022@u.northwestern.edu |
+| Lucah	Ueno | lucahueno2022@u.northwestern.edu |
+| Frank	Yang | frankyang2024@u.northwestern.edu |
 | Sarah Van Wart | vanwars@northwestern.edu |
 
 ### Office Hours
@@ -60,14 +68,27 @@ Final grades are assigned on a fixed scale: 93-100 is an A, 90-92.99 is an A-, 8
 * We will not be using the final exam time allocated for this class.
 
 ### What if I think the grader made a mistake?
-If you believe that your grader made a mistake, please fill out <a href="https://forms.gle/yXLvMnPG2w9bbgGM9" target="_blank">this regrade request form</a>. Keep in mind that your entire assignment will be regraded, meaning that your grade could go down as a result of submitting the form.
+If you believe that your grader made a mistake, please fill out <a href="https://forms.gle/VbiW1jpooPr891VcA" target="_blank">this regrade request form</a>. Keep in mind that your entire assignment will be regraded, meaning that your grade could go down as a result of submitting the form.
 
 ## Late Policy
-* No late labs will be accepted (because we post solutions right away). 
-* Regarding homework: we have created a "late credits" policy (see below)
 
-### Late Credits
-Because this has already been a chaotic quarter with Omicron, etc., we have decided to instill a system of "Late Credits." Over the course of the quarter, you have **7 "late credits"** that you can allocate across your homeworks, no questions asked. The purpose of these late credits is to give you some flexibility if you get sick or have a personal emergency, as Sarah and the course staff are having difficulty keeping track of all of the extension requests. 
+### Labs
+NO LATE LABS WILL BE ACCEPTED (because we post solutions right away). 
+
+### Homework
+A late penalty will be applied to all late homework submission. The late penalty is as follows:
+
+{:.small}
+| Days Late | Penalty |
+|--|--|
+| up to 1 day | 10% penalty | 
+| 1-2 days | 20% penalty | 
+| 2-3 days | 30% penalty | 
+| 3-4 days | 40% penalty | 
+| > 5 days | 50% penalty | 
+
+#### Late Credits
+During COVID, we have decided to instill a system of "Late Credits." Over the course of the quarter, you have **7 "late credits"** that you can allocate across your homeworks, no questions asked. The purpose of these late credits is to give you some flexibility if you get sick or have a personal emergency, as Sarah and the course staff are having difficulty keeping track of all of the extension requests. 
 
 * Note that the last homework MUST be submitted on time (6/11) because of the Ceasar grading deadline.
 
@@ -77,11 +98,10 @@ Because this has already been a chaotic quarter with Omicron, etc., we have deci
     * If you submit a HW assignment 18 hours late, you will spend 1 credit towards that HW (with 6 left over to use for future homeworks). 
     * If you submit a homework 27 hours late, you will spend 2 credits towards that HW (with 5 left over to use for future homeworks). 
 * Credits can only be applied to homework, not labs.
-* If you use up your 7 credits, the original late submission policy for homework kicks in:
-    * 10% per day for the first 5 days. After 5 days, you can earn a maximum of 50% on your HW assignment.
-    * Any accommodations beyond the 7 days will need to be routed through the Dean of Students.
+* If you use up your 7 credits, the late submission policy for homework kicks in
+* Any accommodations beyond the 7 days will need to be routed through the Dean of Students.
 
-To apply your "late credits" to an assignment, please fill out <a href="https://forms.gle/W5BeMPimUDMUgDqw9" target="_blank">this form</a>
+To apply your "late credits" to an assignment, please fill out <a href="https://forms.gle/ywZSkuNaTb58BqoP8" target="_blank">this form</a>
 * You must fill out the form in order for your grader to apply your late credits.
 
 #### A Caveat

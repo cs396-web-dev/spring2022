@@ -3,7 +3,7 @@ layout: assignment-two-column
 title: HTML & CSS Practice
 type: lab
 abbreviation: Lab 1
-draft: 0
+draft: 1
 num: 1
 points: 5
 due_date: 2022-04-01
@@ -16,53 +16,51 @@ due_date: 2022-04-01
     }
 </style>
 
-## 1. Introduction
-The goal of today's lab is to help you get you started using GitHub (if you're new to using it), and to give you a little exposure to HTML and CSS. We will be covering HTML and CSS in much more detail next week, so this lab precedes the lecture. As we will discuss on Monday:
-
-* **HTML files** are for presenting **content** using various build-in interface elements (e.g., paragraphs, lists, tables, images, sections, etc.).
-* **CSS files** are for styling HTML elements (e.g., fonts, colors, positioning, etc.) by (a) *targeting* them using ***selectors***, and (b) setting a various style *properties*.
-
-
 {:.blockquote-no-margin}
-> ## 2. Background Readings
-> Please read / watch the following references ***before*** coming to lab.
->
-> ### 1. GitHub
-> If you have not used GitHub before, please complete the GitHub tutorial before coming to lab this week:
+> ## Readings
+> If you are relatively new to git and GitHub, please complete the GitHub tutorial before coming to lab this week:
 > * <a href="https://guides.github.com/activities/hello-world/">GitHub Tutorial</a> and <a href="https://www.git-tower.com/blog/git-cheat-sheet/" target="_blank">Git Cheat Sheet</a>
 >
-> ### 2. HTML & CSS
-> Please read (or at least skim) the following:
-> 1. [HTML Reference](/spring2022/html-reference/)
-> 2. [CSS Reference](/spring2022/css-reference/), and particularly:
->    * [Rules of thumb](/spring2022/css-reference/rules-of-thumb/)
->    * [Selectors](/spring2022/css-reference/selectors/)
->    * [The Box Model](/spring2022/css-reference/box-model/)
->    * [Media Queries](/spring2022/css-reference/media-queries/)
-> 3. <a href="https://flexboxfroggy.com/" target="blank">Flexbox Froggy</a> (recommended)
+
+## Introduction
+The goal of today's lab is to help you get you started using GitHub (if you're new to using it). Specifically, you will:
+
+{:.compact}
+1. [Install VS Code](#vscode)
+1. [Configure a new repository](#github) (on GitHub.com)
+1. [Configure git locally](#git) (on your laptop)
+1. [Review some git basics](#basics) (add, commit, push, and branch)
+1. [Practice branching](#branching)
+1. Optional: HTML Practice
 
 
-## 3. Set Up your IDE, Git, and GitHub
-We recommend that you use Visual Studio Code as your code editor. We will also be using git to manage versions of your code and to interact with GitHub (and later Heroku).
+## Your Tasks
 
+{:#vscode}
 ### 1. Install Visual Studio Code
-Download and install Visual Studio Code: <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com/</a>
-* We also recommend that you install the <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank">Live Server" extension</a> (click the green "Install" button).
+We recommend that you use Visual Studio Code as your code editor:
+1. Download and install Visual Studio Code: <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com/</a>
+1. Also install the <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank">Live Server" extension</a> (click the green "Install" button).
 
+{:#github}
+### 2. Configure your GitHub repository
+1. If you haven't already, register for GitHub: <a href="https://github.com/join" target="_blank">https://github.com/join</a>. 
+1. Then, create a new **public** repository called `webdev-labs` (see tutorial above if you don't know how). Please make sure that you mark your repo "public." 
+    * Do **NOT** check the `Add a README file`, `Add .gitignore`, or `Choose a license` options.
+1. Finally, create a personal access token as follows:
+    * Navigate to "Settings" in the top, right-hand menu
+    * In the left-hand navigation panel, scroll down to the bottom until you see the "Developer settings" link. Click it.
+    * Then click the "Personal access tokens" link in the left-hand navigation panel.
+    * Generate a new token:
+        * Name the token webdev
+        * Make it so that it "never expires"
+        * Check the "repo" checkbox (which should check all of the child settings as well).
+    * Save the token somewhere safe (you'll need it later, and you won't be able to view it again after you first create it).
 
-### 2. Install Git / Register for GitHub
-If you haven't already:
+{:#git}
+### 3. Configure git on your computer
 1. Install git on your computer: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a>
-2. Register for GitHub: <a href="https://github.com/join" target="_blank">https://github.com/join</a>
-
-### 3. Configure Your GitHub Repository
-Many of you already have a process for doing this, so feel free to do your own thing here. That said, if you're relatively new to this, here are some instructions:
-
-#### On GitHub
-In your web browser, navigate to GitHub and create a new **public** repository called `webdev-labs` (see tutorial above if you don't know how). Please make sure that you mark your repo "public." 
-
-#### On your laptop
-On your computer, create a folder called `webdev-labs` (create it somewhere that you can find it later). Next, download `lab01.zip` (below), unzip it, and move your `lab01` folder inside of your `webdev-labs` folder. 
+1. On your computer, create a folder called `webdev-labs` (create it somewhere that you can find it later). Next, download `lab01.zip` (below), unzip it, and move your `lab01` folder inside of your `webdev-labs` folder. 
 
 <a class="nu-button" href="/spring2022/course-files/labs/lab01.zip">lab01.zip<i class="fas fa-download" aria-hidden="true"></i></a>
 
@@ -75,30 +73,75 @@ webdev-labs
     └── exercise02
 ```
 
-When you're done, open your command line (on your local computer), navigate to your `webdev-labs` directory, and issue the following commands (one at a time, in the order shown):
+When you're done, you're going to run a few commands on the command line (on your laptop) to (a) initialize an empty git repository, (b) add your lab01 files to your repository, (c) commit them, (d) point your local repository to the GitHub repository that you just created, and (e) "push" your files to GitHub. 
+
+To do this, navigate into your `webdev-labs` directory from the command line, and issue the following commands (one at a time, in the order shown):
 
 ```shell
 git init
-git remote add origin ???         # replace ??? w/your repo address, using either in HTTPS or SSH protocol 
 git add .
-git status
-git commit -am 'My first commit'  # any message you want
+git commit -m "first commit"
 git branch -M main
-git push origin main
+
+# IMPORTANT: Replace <USERNAME> and <REPOSITORY> with YOUR github username and
+# YOUR repository (webdev-labs). For example, Sarah's remote address would be: 
+#   https://github.com/vanwars/webdev-labs.git
+git remote add origin https://github.com/<USERNAME>/<REPOSITORY>.git  
+git push -u origin main
 ```
+
+When you're done, navigate back to the GitHub repository you just made and verify that your files have been uploaded.
+
+{:#basics}
+### 4. Git Basics
+What did I just do? Well, please read the cheatsheet summary below to see an annotated explanation of each command used. It is tempting to not read and skip over this section, but please do (and ask your peer mentor some questions if you have them)!
 
 {:.git}
 | | Command | What it does | When to you use it |
 |--|--|--|--|
-| 1. | `git init` | Initializes a brand new git repo on your local machine. | **Just once** (when you're first setting up your repo) |
-| 2. | `git remote add origin ???` | Connects the local repo you just created (on your computer) to your GitHub repo (in the cloud). Replace `???` with the address of the GitHub repo you just made, using either in HTTPS or SSH protocol. For more information, see <a href="https://docs.google.com/document/d/197WNBtEZ36qUztPAEp8uz_R6NdGvNbMjqVLmzBE2H_Y/edit#" target="_blank">this post</a> | **Just once** (when you're first setting up your repo) |
-| 3. | `git add .` | Tells your local repo to watch all of the files in the folder. The dot (.) indicates that you want to add "all" your files. | **Often:** Anytime you create a new file and want to ensure that file is under version control. |
-| 4. | `git status` | Shows you all of the files that have changed since you last committed. Also tells you which files are tracked and which are not. | **Often:** Anytime you want to check the status of your files. |
-| 5. | `git commit -am 'My first commit'` | Committing is like "saving" a version of all of your tracked files (if you ever needed to later revert to a previous version of your code). | **Often:** Anytime you want to save a version of your work. |
-| 6. | `git branch -M main"` | Creates a new branch called `main` and switches to it. A branch is a unique collection of code changes with a unique name). | **Occasionally:** Anytime you want to create a new named branch of your work. |
-| 7. | `git push origin main` | "Pushing" copies all of your committed files to your GitHub repo (on the cloud). | **Often:** Anytime you want to save a version of your files to the cloud (or submit your homework)! |
+| 1. | `git init` | Creates a brand new git repo on your local machine. If you look in your file manager, you'll see a new `.git` folder that has been created at the root of your `webdev-labs` directory. | **Just once** (when you're first setting up your repo) |
+| 2. | `git add .` | The git `add` command stages changes in the working directory to the staging area. It tells Git that you want to include updates to one or more files in the next commit. The dot (.) indicates that you want to add "all" your files. | **Often:** Anytime you create a new file and want to ensure that file is under version control. |
+| 3. | `git status` | Shows you all of the files that have changed since you last committed. Also tells you which files are tracked and which are not. | **Often:** Anytime you want to check the status of your files. |
+| 4. | `git commit -m 'My first commit'` | Committing is like "saving" a version of all of your staged changes. This is useful if you ever needed to later revert to a previous version of your code. | **Often:** Anytime you want to save a version of your work. |
+| 5. | `git branch -M main"` | Creates a new branch called `main` and switches to it. A branch is named version of your code. Technically, they are actually pointers to a snapshot of your code changes. | **Occasionally:** Anytime you want to create a new named branch of your work. |
+| 6. | `git remote add origin <your_repo_address>` | Connects the local repo you just created (on your computer) to your GitHub repo (in the cloud). Replace `<your_repo_address>` with the address of the GitHub repo you just made, using the HTTPS protocol | **Just once** (when you're first setting up your repo) |
+| 7. | `git push -u origin main` | "Pushing" copies all of your committed files to your GitHub repo (on the cloud). `origin` refers to your current branch and `main` refers to your remote branch. If the remote branch does not exist, it will be created when you push for the first time. | **Often:** Anytime you want to save a version of your files to the cloud (or submit your homework)! |
 
-To continue saving and tracking your changes using git / GitHub, repeat steps 3, 4, 5, and 7 as needed.
+To continue saving and tracking your changes using git / GitHub, repeat steps 2, 3, 4, and 7 as needed.
+
+### 5. Practice branching
+Now that you've set up your GitHub, let's try to understand how "branching" works. To do this, you'll start by making a new branch from your command line as follows:
+
+```
+git checkout -b lab01-before
+git branch
+```
+
+After issuing these commands, you should see something like this...
+
+```bash
+* lab01-before
+  main
+```
+...where there is an asterik before lab01-before (which may also be green). The asterik indicates that `lab01-before` is now your "working branch." Next, create a second branch as follows:
+
+```
+git checkout -b lab01-after
+git branch
+```
+
+After issuing these commands, you should see something like this...
+
+```bash
+* lab01-after
+  lab01-before
+  main
+```
+
+...where lab01-after is now your current branch. In total, you now have three branches (or pointers to different snapshots of your code): `main`, `lab01-before`, and `lab01-after`. Now, let's make some changes to some of the files in the `lab01` folder.
+
+
+
 
 ## 4. HTML & CSS Introduction
 Once you've set up your git repository, try the following three HTML / CSS Exercises.

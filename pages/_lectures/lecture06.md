@@ -1,6 +1,6 @@
 ---
 layout: module
-title: Flask Continued; Database Primer
+title: Intro to Databases
 type: lecture
 draft: 1
 show_schedule: 1

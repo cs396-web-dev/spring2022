@@ -2,12 +2,12 @@
 layout: module
 title: Intro to Web Architecture
 type: lecture
-draft: 0
+draft: 1
 show_schedule: 1
 num: 2
 due_date: 2022-03-30
 slides:
-   - url: https://docs.google.com/presentation/d/1CMIx-ZnwbjqKJZKeDD3hVb9TMJFFc9ck3GhGqEDkKlU/edit?usp=sharing
+   - url: https://docs.google.com/presentation/d/1yFvV9mGbl5VwGQNbhAhk0Nbsu_MGsRlV74LYFPhvfA4/edit?usp=sharing
      title: Intro to Web Architecture
 readings:
    - url: https://www.vox.com/2014/6/16/18076282/the-internet

@@ -1,6 +1,6 @@
 ---
 layout: module
-title: SQL Review; Intro to HTTP & REST
+title: Intro to HTTP & REST
 type: lecture
 draft: 1
 show_schedule: 1
