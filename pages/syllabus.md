@@ -95,7 +95,7 @@ During COVID, we have decided to instill a system of "Late Credits." Over the co
 #### How do credits work?
 * 1 credit = 1 day
 * Credits cannot be split / partially allocated. For instance:
-    * If you submit a HW assignment 18 hours late, you will spend 1 credit towards that HW (with 6 left over to use for future homeworks). 
+    * If you submit a HW assignment 30 minutes, you will spend 1 credit towards that HW (with 6 left over to use for future homeworks). 
     * If you submit a homework 27 hours late, you will spend 2 credits towards that HW (with 5 left over to use for future homeworks). 
 * Credits can only be applied to homework, not labs.
 * If you use up your 7 credits, the late submission policy for homework kicks in
