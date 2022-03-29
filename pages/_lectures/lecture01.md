@@ -6,14 +6,11 @@ draft: 0
 show_schedule: 1
 num: 1
 due_date: 2022-03-29
-# videos: 
-#    - url: ""
-#      title: Recorded Lecture Video
-#      live: 1
-#      duration: "50:00:00"
-# slides:
-#    - url: 
-#      title: Intro to the Course
+videos: 
+   - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5bdf59eb-02e3-46a9-9755-ae670128d563
+     title: Recorded Lecture Video
+     live: 1
+     duration: "47:02"
 ---
 
 <style>
