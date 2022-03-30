@@ -3,7 +3,7 @@ layout: assignment-two-column
 title: HTML & CSS Practice
 type: lab
 abbreviation: Lab 1
-draft: 1
+draft: 0
 num: 1
 points: 5
 due_date: 2022-04-01
@@ -31,7 +31,7 @@ The goal of today's lab is to help you get you started using GitHub (if you're n
 1. [Configure git locally](#git) (on your laptop)
 1. [Review some git basics](#basics) (add, commit, push, and branch)
 1. [Practice branching](#branching)
-1. Optional: HTML Practice
+1. [Optional: HTML Practice](#extra-practice)
 
 
 ## Your Tasks
@@ -46,7 +46,10 @@ We recommend that you use Visual Studio Code as your code editor:
 ### 2. Configure your GitHub repository
 1. If you haven't already, register for GitHub: <a href="https://github.com/join" target="_blank">https://github.com/join</a>. 
 1. Then, create a new **public** repository called `webdev-labs` (see tutorial above if you don't know how). Please make sure that you mark your repo "public." 
-    * Do **NOT** check the `Add a README file`, `Add .gitignore`, or `Choose a license` options.
+    * Leave the following options **UNCHECKED**:
+       * Add a README file
+       * Add .gitignore
+       * Choose a license
 1. Finally, create a personal access token as follows:
     * Navigate to "Settings" in the top, right-hand menu
     * In the left-hand navigation panel, scroll down to the bottom until you see the "Developer settings" link. Click it.
@@ -73,9 +76,7 @@ webdev-labs
     └── exercise02
 ```
 
-When you're done, you're going to run a few commands on the command line (on your laptop) to (a) initialize an empty git repository, (b) add your lab01 files to your repository, (c) commit them, (d) point your local repository to the GitHub repository that you just created, and (e) "push" your files to GitHub. 
-
-To do this, navigate into your `webdev-labs` directory from the command line, and issue the following commands (one at a time, in the order shown):
+Next, navigate into your `webdev-labs` directory from the command line, and issue the following commands (one at a time, in the order shown):
 
 ```shell
 git init
@@ -109,45 +110,31 @@ What did I just do? Well, please read the cheatsheet summary below to see an ann
 
 To continue saving and tracking your changes using git / GitHub, repeat steps 2, 3, 4, and 7 as needed.
 
+{:#branching}
 ### 5. Practice branching
-Now that you've set up your GitHub, let's try to understand how "branching" works. To do this, you'll start by making a new branch from your command line as follows:
+Now that you've set up git / GitHub, let's try to understand how "branching" works. 
 
-```
-git checkout -b lab01-before
-git branch
-```
+#### Create a new "lab01" branch
+Make a new branch called "lab01" from your command line as follows:
 
-After issuing these commands, you should see something like this...
-
-```bash
-* lab01-before
-  main
-```
-...where there is an asterik before lab01-before (which may also be green). The asterik indicates that `lab01-before` is now your "working branch." Next, create a second branch as follows:
-
-```
-git checkout -b lab01-after
-git branch
+```shell
+git checkout -b lab01   # creates the branch
+git branch              # lists all of your branches
 ```
 
 After issuing these commands, you should see something like this...
 
-```bash
-* lab01-after
-  lab01-before
+```shell
+* lab01
   main
 ```
-
-...where lab01-after is now your current branch. In total, you now have three branches (or pointers to different snapshots of your code): `main`, `lab01-before`, and `lab01-after`. Now, let's make some changes to some of the files in the `lab01` folder.
-
+...where there is an asterik before lab01 (which may also be green). The asterik indicates that `lab01` is now your "working branch."
 
 
+#### Edit Your Code
+Now, let's make some changes to some of the files in the `lab01` folder (on your `lab01` branch):
 
-## 4. HTML & CSS Introduction
-Once you've set up your git repository, try the following three HTML / CSS Exercises.
-
-### 1. Box Model Practice
-1. Open the `lab01/exercise01` folder.
+1. Open the `lab01/exercise01` folder in Visual Studio code.
 1. Open `index.html` and uncomment the stylesheet link. 
     * Note that in order for a stylesheet to be applied to an HTML file, you have to explicitly link to it in the `<head></head>` section.
 1. Change out the photo to another photo that you find on the Internet.
@@ -157,7 +144,44 @@ Once you've set up your git repository, try the following three HTML / CSS Exerc
 
 <img class="small" src="/spring2022/assets/images/labs/lab01/card.png" />
 
-### 2. Layout Practice
+#### Commit and push your "lab01" branch
+Commit and push your changes as follows:
+
+```shell
+git add .
+git commit -m 'Lab01 updates' # use any message you like
+git push -u origin lab01
+```
+
+Go to GitHub and verify that you have two branches: `main` and `lab01`
+
+#### Switch back to your "main" branch
+Switch back to your `main` branch as follows:
+
+```shell
+git checkout main
+```
+
+Note that your code reverted back to the version of the files you originally downloaded. Now switch back to `lab01`:
+
+```shell
+git checkout lab01
+```
+
+Note that your changes are back! Amazing! Finally, if you want to "merge your changes from the `lab01` branch into your `main` branch, please do the following:
+
+```shell
+git checkout main
+git merge lab01
+git push origin main
+```
+
+Now, both of your branches will be identical. Typically, branches are used for experimental code / new features, and then once those features have been finalized, they are incorporated into (or "merged") into to the `main` branch (which represents the primary codebase).
+
+{:#extra-practice}
+## Extra Practice (Optional)
+Not required, just to get you thinking about layouts in preparation for next week's assignment.
+
 Using any approach you want, please create the following screens for desktop, tablet, and mobile (pictured below). To do this:
 
 1. Open the `lab01/exercise02` folder.
@@ -166,21 +190,21 @@ Using any approach you want, please create the following screens for desktop, ta
 1. You will also need to uncomment the viewport meta tag in the `<head></head>` section of your HTML file.
     * Read more about the viewport meta tag on <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag" target="_blank">MDN</a>. In the context of mobile web design, this tag tells the browser to honor the dimensions of the device (versus assuming that the website was designed for a desktop screen).
 
-#### Desktop
+### Desktop
 
 <img class="large" src="/spring2022/assets/images/labs/lab01/desktop.png" />
 
-#### Tablet
+### Tablet
 
 <img class="medium" align="top" src="/spring2022/assets/images/labs/lab01/tablet1.png" />
 <img class="medium" align="top" src="/spring2022/assets/images/labs/lab01/tablet2.png" />
 
-#### Mobile
+### Mobile
 
 <img class="small" src="/spring2022/assets/images/labs/lab01/mobile.png" />
 
 
-### 3. Jazz it Up
+### Jazz it Up
 If you have time, please experiment with one or more of the following enhancements:
 1. Try changing the font of the Card header (H2 tag) to use a Google Font.
     * Hint: Give <a href="https://www.freecodecamp.org/news/how-to-use-google-fonts-in-your-next-web-design-project-e1ad48f1adfa/" target="_blank">this tutorial</a> a shot (or find one you like better)
@@ -188,25 +212,13 @@ If you have time, please experiment with one or more of the following enhancemen
     * Hint: [Embedding media](/spring2022/html-reference/media-tags/)
 1. Try modifying your HTML and CSS files however you want. 
 
-## 5. What to Turn In
-Note: if you weren't able to complete all three of the exercises in the time alotted, that's fine. This was just a warm-up and you are being assessed on evidence of a good-faith effort. The most important thing is that you set up your GitHub
 
-To submit Lab 1:
+## What to Turn In
 
-### 1. Push all of your files to GitHub
-Please copy the latest version of your files to GitHub by issuing the following commands:
+### 1. Paste a link to your repo on Canvas
+Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for <a href="https://canvas.northwestern.edu/courses/163531/assignments/1055578" target="_blank">Lab 1</a>.
 
-```shell
-git add .    # in case you created any new files
-git commit -am 'Committing all of my files'
-git status   # to make sure that all of your files are being tracked
-git push     # sends your files to GitHub
-```
+### 2. Answer the following questions:
+1. What is a branch?
+2. What is the difference between the "commit" command and the "push" command?
 
-### 2. Paste a link to your repo on Canvas
-Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for <a href="https://canvas.northwestern.edu/courses/157233/assignments/1007942" target="_blank">Lab 1</a>.
-
-### 3. Answer the following question on Canvas
-**Below the link to your repo**, in a brief reflective response (about 4-8 sentences total), please consider the following questions:
-- Why, and to whom, is accessibility important?
-- How might you make a site (or app) like Instagram more accessible?
