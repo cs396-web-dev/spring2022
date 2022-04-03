@@ -1,5 +1,6 @@
 EXCLUDED = [
     # 'assignments',
+    'env',
     'demos',
     'exams',
     'build',

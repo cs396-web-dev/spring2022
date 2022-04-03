@@ -49,15 +49,12 @@ def exercise2():
 @app.route('/restaurant-data/')
 @app.route('/restaurant-data')
 def exercise3():
-    args = request.args
-    location = args.get('location')
-    search_term = args.get('term')
-    if not (location and search_term):
-        return '"location" and "term" are required query parameters'
-    
+    search_term = 'pizza'
+    location = 'Evanston, Il'
     url = 'https://www.apitutor.org/yelp/simple/v3/businesses/search?location={0}&term={1}'.format(location, search_term)
     response = requests.get(url)
     data = response.json()
+    pprint(data) # for debugging -- prints the result to the command line
     return json.dumps(data)
 
 ##############

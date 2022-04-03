@@ -3,7 +3,7 @@ layout: assignment-two-column
 title: Setting Up Python & Flask
 type: lab
 abbreviation: Lab 2
-draft: 1
+draft: 0
 num: 2
 points: 5
 due_date: 2022-04-08
@@ -38,7 +38,26 @@ Most frameworks have abstractions similar to those offered by Flask, so once you
 | C# | ASP.NET |
 
 
-## 2. Background Readings
+## 2. Intro to Python Virtual Environments
+
+{:.blockquote-no-margin}
+> From the <a href="https://docs.python.org/3/library/venv.html" target="_blank">Python Docs</a>: 
+>
+> A virtual environment is a Python environment such that the Python interpreter, libraries and scripts installed into it are isolated from those installed in other virtual environments, and (by default) any libraries installed in a “system” Python, i.e., one which is installed as part of your operating system.
+
+Practically speaking, a virtual environment (venv) "sandboxes" your Python installation so that anything installed within a venv is not available outside of it. Libraries installed in a "system" Python ARE available to your venv, but can be overridden from within the venv. For instance, if `numpy version 1.15.4` is installed on your "system" Python and you decide to install `numpy version 1.16.1` in your venv, then within the venv, `1.16.1` will take precedence. 
+
+Some commands to know:
+
+```bash
+python3 -m venv env      # creates a new virtual environment called "env"
+source env/bin/activate  # activates the virtual environment (stored in the "env/bin" folder
+deactive                 # deactivates the virtual environment
+```
+
+Note that when your venv is activated, there will be a `(env)` prefix in front of your command prompt. When activated, any python or `pip install` commands will be interacting with your virtual environment. 
+
+## 3. Background Readings
 Please read the following:
 
 {:.compact}
@@ -46,7 +65,7 @@ Please read the following:
 * Flask website. <a href="https://flask.palletsprojects.com/en/2.0.x/quickstart/" target="_blank">Flask Quickstart Guide</a>
 * Towards Data Science. <a href="https://towardsdatascience.com/virtual-environments-104c62d48c54#8025" target="_blank">Intro to Python Virtual Environments</a>
 
-## 3. Set Up
+## 4. Set Up
 If you haven't used Python before, please download and install it: <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a>.
 
 Once Python is installed, download lab02.zip (below), unzip it, and move your lab02 folder inside of your webdev-labs folder. 
@@ -133,7 +152,7 @@ Sarah will keep adding FAQs to this section. Some known issues:
 1. If you are using windows and you can't start flask using the `flask run` command, try: `python -m flask run` 
 
 
-## 4. Required Flask Exercises
+## 5. Required Flask Exercises
 Once you've set up your flask installation, you will do 5 short exercises:
 
 |  | Exercise | Purpose |
@@ -213,16 +232,19 @@ def exercise3():
     return json.dumps(data)
 ```
 
-The code above allows the user to specify the location and search term they'd like to use when querying yelp using "query parameters":
+The code above allows the user to specify the location and search term they'd like to use when querying yelp using "query parameters." Here is an example of a URL that uses query parameters:
+
+<a href="http://127.0.0.1:5000/restaurant-data/?location=Evanston+IL&term=chinese" target="_blank">http://127.0.0.1:5000/restaurant-data/?location=Evanston+IL&term=chinese</a>
 
 {:.compact}
 * The `?` character is used to specify where the route ends and the query parameters begin. 
-* If there is more than one query parameter, then each key-value pair is separated by an `&` character (see examples below). 
+* If there is more than one query parameter, then each parameter/argument pair is separated by an `&` character (see examples below). 
+* The parameter name is on the left side of the `=` and the value is on the right side.
 * In flask, you can access the query parameters via the `request.args`, which stores a dictionary representation of any query parameters associated with a given route.
 
 After making the changes above, test your new routes by experimenting with the following URLs:
 
-* <a href="http://127.0.0.1:5000/restaurant-data/?location=Evanston,%20IL&term=chinese" target="_blank">http://127.0.0.1:5000/?location=restaurant-data/Evanston,%20IL&term=chinese</a> (Chinese restaurants in Evanston)
+* <a href="http://127.0.0.1:5000/restaurant-data/?location=Evanston+IL&term=chinese" target="_blank">http://127.0.0.1:5000/restaurant-data/?location=Evanston+IL&term=chinese</a> (Chinese restaurants in Evanston)
 * <a href="http://127.0.0.1:5000/restaurant-data/?location=San Diego,%20CA&term=thai" target="_blank">http://127.0.0.1:5000/restaurant-data/?location=San Diego,%20CA&term=thai</a> (Thai restaurants in San Diego)
 
 Feel free to replace the cities and search terms with your own! Basic takeaway: you can allow your user to pass arguments to your routes via query parameters.
@@ -272,7 +294,7 @@ Modify the HTML in this template so that it displays the Yelp data in a more vis
 
 Feel free to jazz up your template any way you like!
 
-## 5. Optional Flask Exercises (recommended if time)
+## 6. Optional Flask Exercises (recommended if time)
 If you have more time, please also try the optional flask exercises. It will give you more practice to ensure that you feel comfortable with HW2!
 
 ### 1. Looping using Jinja
@@ -283,7 +305,7 @@ In exercise 4, you only showed a single restaurant. Look at the <a href="https:/
 ### 2. Includes
 See if you can convert the HTML that shows a single restaurant card into an include file (similar to `includes/header.html`)
 
-## 6. What to Turn In
+## 7. What to Turn In
 To submit Lab 2:
 
 ### 1. Push all of your files to GitHub
