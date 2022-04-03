@@ -312,11 +312,11 @@ To submit Lab 2:
 Please copy the latest version of your files to GitHub by issuing the following commands:
 
 ```shell
-git add .    # in case you created any new files
-git commit -am 'Commiting my completed lab02 files'
-git status   # to make sure that all of your files are being tracked
+git status   # shows you what has been changed and which files are being tracked
+git add .    # stage your changes to be committed 
+git commit -m 'Commiting my completed lab02 files'
 git push     # sends your files to GitHub
 ```
 
 ### 2. Paste a link to your repo on Canvas
-Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for <a href="#" target="_blank">Lab 2</a>.
+Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for <a href="https://canvas.northwestern.edu/courses/163531/assignments/1055579/" target="_blank">Lab 2</a>.
