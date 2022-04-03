@@ -9,6 +9,14 @@ points: 5
 due_date: 2022-04-08
 ---
 
+<style>
+    table th:first-child, table td:first-child {
+        min-width: auto;
+        max-width: auto;
+        width: auto;
+    }
+</style>
+
 ## 1. Intro to Flask
 <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">Flask</a> is a framework, built with Python, for helping people build dynamic, scalable web applications. We have selected Flask as our web server engine for this quarter because it has a relatively simple set of common abstractions, and is therefore easier to learn than some other frameworks. At the same time, it is also very powerful, and has features such as:
 
@@ -31,7 +39,12 @@ Most frameworks have abstractions similar to those offered by Flask, so once you
 
 
 ## 2. Background Readings
-* Please review the readings from [Lecture 4](../lectures/lecture04).
+Please read the following:
+
+{:.compact}
+* Janetakis, Nick (Oct., 2017). <a href="https://nickjanetakis.com/blog/server-side-templates-vs-rest-api-and-javascript-front-end" target="_blank">Server Side Templates vs REST API and Javascript Front-End</a>.
+* Flask website. <a href="https://flask.palletsprojects.com/en/2.0.x/quickstart/" target="_blank">Flask Quickstart Guide</a>
+* Towards Data Science. <a href="https://towardsdatascience.com/virtual-environments-104c62d48c54#8025" target="_blank">Intro to Python Virtual Environments</a>
 
 ## 3. Set Up
 If you haven't used Python before, please download and install it: <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a>.
@@ -58,21 +71,20 @@ webdev-labs
     └── templates
 ```
 
-Using Terminal (Mac),  GitBash (Windows), or the Command Prompt (Windows) to navigate to your lab02 folder. Then, install the Python dependencies:
+Using Terminal (Mac),  GitBash (Windows), or the Command Prompt (Windows) to navigate to your lab02 folder. Then, set up a virtual environment and install the dependencies:
 
 ```bash
-pip3 install -r requirements.txt    # install dependencies
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt    # install dependencies
 ```
+
 If that doesn't work (usually on Windows), try:
 ```bash
-py -m pip install -r requirements.txt
-# or one of these:
-# python3 -m pip install -r requirements.txt
-# python -m pip install -r requirements.txt
+py -m venv env
+source env/bin/activate
+pip install -r requirements.txt    # install dependencies
 ```
-
-### If you downloaded lab02.zip **before 6:30PM Wednesday**
-Sarah forgot to add the `requests` module to requirements.txt, so you'll have to install it manually from the command line: `pip3 install requests`
 
 When you're done, try running your flask app from your command line:
 
@@ -117,19 +129,31 @@ You should see the following output:
 
 ### FAQs / Troubleshooting
 Sarah will keep adding FAQs to this section. Some known issues:
-1. As mentioned above, Sarah forgot to include the `requests` module in the original `requirements.txt` installation file. If you downloaded the code before 6:30PM on Wednesday you'll have to install it manually (or else you can re-download the starter files): `pip3 install requests`
+1. If `python3` or `py` aren't recognized, ask your peer mentor / go to office hours. It is important that you figure out how to invoke python from the command line ASAP, as you'll need to do this for the rest of the quarter.
 1. If you are using windows and you can't start flask using the `flask run` command, try: `python -m flask run` 
 
 
 ## 4. Required Flask Exercises
+Once you've set up your flask installation, you will do 5 short exercises:
+
+|  | Exercise | Purpose |
+|--|--|--|
+| 1. | [Display personalized greeting](#task_1) | Practice generating and sending a dynamic string via HTTP |
+| 2. | [Create a template](#task_2) | Practice creating a data-driven, server-side HTML file from a template. Templates allow you to separate the data from the presentation of the data. |
+| 3. | [Accessing data from other servers](#task_3) | Practice retrieving data from another server using query parameters. |
+| 4. | [Accessing data from other servers](#task_4) | Practice retrieving data from another server and sending it to a client. |
+| 5. | [XXX](#task_5) | Practice retrieving data from another server and sending it to a client. |
+
 Please complete the following exercises to get a sense of the kinds of things you can do with Flask:
 
+{:#task_1}
 ### 1. Display personalized greeting
 Update the `exercise1` function so that it returns a personalized greeting to the user. In other words, replace "Hello World!" with something like, "Hi Erick!"
 * Assume that the `current_user` variable, defined at the top of `app.py` represents the user who is currently logged in. 
 
 <img class="medium frame" src="/spring2022/assets/images/labs/lab02/hello-erick.png" />
 
+{:#task_2}
 ### 2. Merge with a template
 The `exercise2` function uses a template to generate its response. Specifically, python reads in the `templates/quote-of-the-day.html` file, finds any python expressions (represented by curly braces), evaluates them, and finally sends a "plain" HTML file back to the client:
 
@@ -150,6 +174,7 @@ Please make the following modifications:
 
 <img class="medium frame" src="/spring2022/assets/images/labs/lab02/erick-quote.png" />
 
+{:#task_3}
 ### 3. Accessing data from other servers
 Servers can also be clients that issue requests to other servers (the thing doing the "asking" is usually referred to as the client). In other words, your Flask server can query data from other servers (using HTTP or other protocols) and then make use of that data in their own way. The `exercise3` function queries a proxy server that Sarah made (<a href="https://www.apitutor.org" target="_blank">https://www.apitutor.org</a>) for accessing Yelp (and other providers). In this example, we are querying Yelp for restaurants that match a ***location*** and ***search term***:
 
@@ -157,8 +182,8 @@ Servers can also be clients that issue requests to other servers (the thing doin
 @app.route('/restaurant-data')
 def exercise3():
     search_term = 'pizza'
-    city = 'Evanston, Il'
-    url = 'https://www.apitutor.org/yelp/simple/v3/businesses/search?location={0}&term={1}'.format(city, search_term)
+    location = 'Evanston, Il'
+    url = 'https://www.apitutor.org/yelp/simple/v3/businesses/search?location={0}&term={1}'.format(location, search_term)
     response = requests.get(url)
     data = response.json()
     pprint(data) # for debugging -- prints the result to the command line
@@ -171,26 +196,36 @@ Note that the `/restaurant-data` route returns a JSON string (instead of an HTML
 You are going to make this route more customizable by replacing the code shown above with this code:
 
 ```python
-@app.route('/restaurant-data/<city>/<search_term>')
-@app.route('/restaurant-data/<city>')
+@app.route('/restaurant-data/')
 @app.route('/restaurant-data')
-def exercise3(city='Evanston, IL', search_term=''):
-    url = 'https://www.apitutor.org/yelp/simple/v3/businesses/search?location={0}&term={1}'.format(city, search_term)
+def exercise3():
+    args = request.args
+    location = args.get('location')
+    search_term = args.get('term')
+    if not (location and search_term):
+        return '"location" and "term" are required query parameters'
+    
+    url = 'https://www.apitutor.org/yelp/simple/v3/businesses/search?location={0}&term={1}'.format(location, search_term)
     response = requests.get(url)
     data = response.json()
     pprint(data) # for debugging -- prints the result to the command line
+
     return json.dumps(data)
 ```
 
-The code above allows function arguments to be passed into the Yelp query based on the route. After making the changes above, test your new routes by experimenting with the following URLs:
+The code above allows the user to specify the location and search term they'd like to use when querying yelp using "query parameters":
 
-* <a href="http://127.0.0.1:5000/restaurant-data" target="_blank">http://127.0.0.1:5000/restaurant-data</a> (All restaurants in Evanston -- defaults to Evanston)
-* <a href="http://127.0.0.1:5000/restaurant-data/Evanston,%20IL" target="_blank">http://127.0.0.1:5000/restaurant-data/Evanston,%20IL</a> (All restaurants in Evanston)
-* <a href="http://127.0.0.1:5000/restaurant-data/Evanston,%20IL/chinese" target="_blank">http://127.0.0.1:5000/restaurant-data/Evanston,%20IL/chinese</a> (Chinese restaurants in Evanston)
-* <a href="http://127.0.0.1:5000/restaurant-data/San Diego,%20CA" target="_blank">http://127.0.0.1:5000/restaurant-data/San Diego,%20CA</a> (All restaurants in San Diego)
-* <a href="http://127.0.0.1:5000/restaurant-data/San Diego,%20CA/thai" target="_blank">http://127.0.0.1:5000/restaurant-data/San Diego,%20CA/thai</a> (Thai restaurants in San Diego)
+{:.compact}
+* The `?` character is used to specify where the route ends and the query parameters begin. 
+* If there is more than one query parameter, then each key-value pair is separated by an `&` character (see examples below). 
+* In flask, you can access the query parameters via the `request.args`, which stores a dictionary representation of any query parameters associated with a given route.
 
-Feel free to replace the cities and search terms with your own! Basic takeaway: you can allow your user to pass data into your functions via the URL.
+After making the changes above, test your new routes by experimenting with the following URLs:
+
+* <a href="http://127.0.0.1:5000/restaurant-data/?location=Evanston,%20IL&term=chinese" target="_blank">http://127.0.0.1:5000/?location=restaurant-data/Evanston,%20IL&term=chinese</a> (Chinese restaurants in Evanston)
+* <a href="http://127.0.0.1:5000/restaurant-data/?location=San Diego,%20CA&term=thai" target="_blank">http://127.0.0.1:5000/restaurant-data/?location=San Diego,%20CA&term=thai</a> (Thai restaurants in San Diego)
+
+Feel free to replace the cities and search terms with your own! Basic takeaway: you can allow your user to pass arguments to your routes via query parameters.
 
 <img class="large frame" src="/spring2022/assets/images/labs/lab02/data-feed-miami-cuban.png" />
 
@@ -199,11 +234,16 @@ Feel free to replace the cities and search terms with your own! Basic takeaway: 
 Now, you're going to create a data-driven **template** to display information about the "Top Restaurant" (according to Yelp) that matches your search criteria. Consider the following code:
 
 ```python
-@app.route('/restaurant/<city>/<search_term>')
-@app.route('/restaurant/<city>')
+@app.route('/restaurant/')
 @app.route('/restaurant')
-def exercise4(city='Evanston, IL', search_term=''):
-    url = 'https://www.apitutor.org/yelp/simple/v3/businesses/search?location={0}&term={1}'.format(city, search_term)
+def exercise4():
+    args = request.args
+    location = args.get('location')
+    search_term = args.get('term')
+    if not (location and search_term):
+        return '"location" and "term" are required query parameters'
+
+    url = 'https://www.apitutor.org/yelp/simple/v3/businesses/search?location={0}&term={1}'.format(location, search_term)
     response = requests.get(url)
     restaurants = response.json()
     pprint(restaurants[0]) # for debugging
@@ -211,18 +251,15 @@ def exercise4(city='Evanston, IL', search_term=''):
         'restaurant.html',
         user=current_user,
         search_term=search_term,
-        city=city,
-        restaurant=restaurants[0]
+        location=location,
+        restaurant=restaurants[0] # just show the first restaurant in the list.
     )
 ```
 
 It works very similarly to the code in exercise 3, except for it merges with the `restaurant.html` template (instead of dumping raw JSON data). Please try testing these routes by experimenting with the following URLs:
 
-* <a href="http://127.0.0.1:5000/restaurant" target="_blank">http://127.0.0.1:5000/restaurant</a> (All restaurants in Evanston -- defaults to Evanston)
-* <a href="http://127.0.0.1:5000/restaurant/Evanston,%20IL" target="_blank">http://127.0.0.1:5000/restaurant/Evanston,%20IL</a> (All restaurants in Evanston)
-* <a href="http://127.0.0.1:5000/restaurant/Evanston,%20IL/chinese" target="_blank">http://127.0.0.1:5000/restaurant/Evanston,%20IL/chinese</a> (Chinese restaurants in Evanston)
-* <a href="http://127.0.0.1:5000/restaurant/San Diego,%20CA" target="_blank">http://127.0.0.1:5000/restaurant/San Diego,%20CA</a> (All restaurants in San Diego)
-* <a href="http://127.0.0.1:5000/restaurant/San Diego,%20CA/thai" target="_blank">http://127.0.0.1:5000/restaurant/San Diego,%20CA/thai</a> (Thai restaurants in San Diego)
+* <a href="http://127.0.0.1:5000/restaurant/?location=Evanston,%20IL&term=chinese" target="_blank">http://127.0.0.1:5000/restaurant/?location=Evanston,%20IL&term=chinese</a> (Chinese restaurants in Evanston)
+* <a href="http://127.0.0.1:5000/restaurant/?location=San Diego,%20CA&term=thai" target="_blank">http://127.0.0.1:5000/restaurant/?location=San Diego,%20CA/thai</a> (Thai restaurants in San Diego)
 
 Note that the `restaurant.html` template uses a new construct -- the "include" -- as a way to modularize code.
 
@@ -260,11 +297,4 @@ git push     # sends your files to GitHub
 ```
 
 ### 2. Paste a link to your repo on Canvas
-Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for <a href="https://canvas.northwestern.edu/courses/157233/assignments/1016081" target="_blank">Lab 2</a>.
-
-### 3. Answer the following question on Canvas
-**Below the link to your repo**, in a brief reflective response (about 2-3 sentences per question), please consider the following questions:
-
-- Did you consider conducting accessibility testing on your lab assignment? Why or why not?
-- If you tested your site for accessibility and found issues, were you able to solve them? What did you do to try to solve them? What stopped you from successfully resolving or trying to resolve the issues?
-- How might you change the JSON data response from the Yelp API to enhance accessibility?
+Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for <a href="#" target="_blank">Lab 2</a>.
