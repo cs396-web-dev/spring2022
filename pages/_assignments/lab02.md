@@ -51,7 +51,7 @@ Some commands to know:
 
 ```bash
 python3 -m venv env      # creates a new virtual environment called "env"
-source env/bin/activate  # activates the virtual environment (stored in the "env/bin" folder
+source env/bin/activate  # activates the virtual environment (stored in the "env/bin" folder)
 deactive                 # deactivates the virtual environment
 ```
 
