@@ -1,12 +1,12 @@
 ---
 layout: assignment-two-column
-title: Authentication Lab
+title: JavaScript Libraries
 type: lab
 abbreviation: Lab 7
 draft: 1
 num: 7
 points: 5
-due_date: 2022-05-20
+due_date: 2022-05-13
 ---
 
 <style>

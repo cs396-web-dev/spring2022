@@ -6,7 +6,7 @@ abbreviation: Lab 6
 draft: 1
 num: 6
 points: 5
-due_date: 2022-05-13
+due_date: 2022-05-06
 ---
 
 <style>

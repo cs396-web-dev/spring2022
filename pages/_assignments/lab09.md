@@ -1,285 +1,170 @@
 ---
 layout: assignment-two-column
-title: React
+title: Mini Chat App
 type: lab
 abbreviation: Lab 9
 draft: 1
 num: 9
 points: 5
-due_date: 2022-06-03
+due_date: 2022-05-27
+description: |
+    Create a basic chat app using WebSockets
 ---
+**Credits & Kudos**: Cooper Barth wrote this lab, and Sarah adapted it to work with Python.
 
-<style>
-    .two-column table th:first-child, 
-    .two-column table td:first-child {
-        min-width: auto !important;
-        width: auto !important;
-    }
+> ## Updates
+> If you can't get your local chat server working, use the course chat server, which can be accessed here: <a href="wss://chat-server-cs396.herokuapp.com/">wss://chat-server-cs396.herokuapp.com</a>
 
-    .two-column table th:nth-child(2), 
-    .two-column table td:nth-child(2) {
-        min-width: 200px; !important;
-        width: auto !important;
-    }
-</style>
+<a class="nu-button" style="margin-top:20px;display:inline-block;" href="/spring2022/course-files/labs/lab08.zip">lab08.zip<i class="fas fa-download" aria-hidden="true"></i></a>
 
-<a class="nu-button" href="/spring2022/course-files/labs/lab09.zip">lab09.zip<i class="fas fa-download" aria-hidden="true"></i></a>
+{:.blockquote-no-margin}
+> ## Background Readings
+> * <a href="https://stackoverflow.blog/2019/12/18/websockets-for-fun-and-profit/" target="_blank">WebSockets for fun and profit</a> (a nice, concise overview)
+> * <a href="https://www.ably.io/topic/websockets" target="_blank">A conceptual overview of WebSockets</a> (a longer, more detailed overview)
+> * <a href="https://websockets.readthedocs.io/en/latest/index.html" target="_blank">The websockets library (Python)</a>
+> * <a href="https://www.youtube.com/watch?v=SfQd1FdcTlI" target="_blank">Demo using websockets and Python</a>
 
-> ## Update
-> Sarah has created a video walkthrough if it's helpful!
-> * <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2a57e77b-7baa-49b1-97bb-ae550144a73a" target="_blank">Lab 09 Video Walkthrough</a>
+Until now, we've been using the HTTP protocol to send messages between a user's client at the server. Using HTTP, clients must initiate individual connections to the server in order to request and receive data.
 
-> ## Required Readings
-> Before beginning this week's lab, please complete the <a href="https://reactjs.org/docs/hello-world.html" target="_blank">React Step-by-Step Guide</a>. It will take you and hour, but if you're new to React it's an hour well spent. It will be impossible for you to work effectively in React without understanding the core conventions and workflow, including:
-> * <a href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">JSX</a>
-> * <a href="https://reactjs.org/docs/components-and-props.html" target="_blank">Components and props</a>
-> * <a href="https://reactjs.org/docs/state-and-lifecycle.html" target="_blank">State and lifecycle</a>
-> * <a href="https://reactjs.org/docs/conditional-rendering.html" target="_blank">Conditional rendering</a>
-> * <a href="https://reactjs.org/docs/handling-events.html" target="_blank">Handling events</a>
-> * <a href="https://reactjs.org/docs/forms.html" target="_blank">Forms</a>
-> * <a href="https://reactjs.org/docs/lifting-state-up.html" target="_blank">Lifting up state</a>
-> * <a href="https://reactjs.org/docs/thinking-in-react.html" target="_blank">Thinking in React</a>
+However, there are examples in which it may be useful for the server to send data to the client without the client explicitly requesting it. WebSockets are useful for these cases, since each client establishes a persistent connection to the server over which the server can send messages.
 
-## Instructions
-In this week's lab, you will be re-implementing a subset of your Photo App UI using React. The following 5 tasks are required in order for you to get full credit for the lab:
-
-1. [Create a component hierarchy](#step1)
-2. [Create stubs for each component](#step2)
-3. [Implement the "Posts" and "Post" components](#step3)
-4. [Implement the "LikeButton" component](#step4)
-5. [Implement the "BookmarkButton" component](#step5)
-6. [Fill out the accessibility questionnaire](#step6)
+<table style="border-width:0px;">
+    <tr>
+        <td>
+            <img class="large frame" src="/spring2022/assets/images/labs/lab08/img1.png" />
+            <p>HTTP Protocol (http:// or https://)</p>
+        </td>
+        <td>
+            <img class="large frame" src="/spring2022/assets/images/labs/lab08/img2.png" />
+            <p>Web Socket Protocol (ws:// or wss://)</p> 
+        </td>
+    </tr>
+</table>
 
 
-## Set Up
-Download `lab09.zip`, unzip it, and open the folder in VSCode.
+Today, you will building a messaging app using WebSockets. This requires two components:
 
-From your command line, navigate to the `lab09` directory and install the required packages with `npm install`. Then, run the server locally using `npm start`. 
+- A WebSocket server that handles incoming messages from each client
+- A client that establishes a connection to the server and sends messages to the server whenever a user chats.
 
-> ### Tips
-> * If you're running into any errors with fetch requests, you may have a few minor bugs in your REST API Endpoint. To verify (*Is the bug in my React code or in my API?*), try running your code using the course API by updating your React app's `proxy` url address in `package.json` to: <a href="https://photo-app-secured.herokuapp.com/" target="_blank">https://photo-app-secured.herokuapp.com/</a>.
-> * If you're switching between the course API and your API to debug, note that you'll either have to clear out your `access_token_cookie` manually (by physically deleting it using the Application panel of your browswer's developer tools) or else use the same JWT_SECRET as the course application (set in your `.env` file), which is **MY_SECRET** (e.g., `JWT_SECRET=MY_SECRET`).
-> * By default, your JWT token will time out every 15 minutes. To make your life easier, consider extending the life of your JWT token by adding the code below to your `app.py` file: 
+Note that the server and the client don't have to be on the same machine (and furthermore the client doesn't even have to be hosted in the cloud)!
+
+## 1. Implement the Server Functionality
+
+Download `lab08.zip`, unzip it, and open the folder in VSCode.
+
+From your command line, navigate to the `lab08/server` directory and install the required packages with `pip3 install -r requirements.txt` (or however you've been doing this all quarter). Then run the server locally using `python3 app.py`. 
+
+Open `app.py` in VS Code and take a look at it. A few things to note:
+* This server isn't using flask. Rather, it's using the `websockets` third-party library to listen for websocket requests.
+* The `respond_to_message` function naively echos a message back to the originating client.
+* The server doesn't keep track of all of the websockets that are connected to it. Therefore, it does not know how to broadcast a user's message to all of the other socket connections.
 
 ```python
-# Import timedelta at the top:
-from datetime import timedelta
-
-# Put this setting with all of your other JWT settings:
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=30)
+async def respond_to_message(websocket, message):
+    data = json.loads(message)
+    print(data)
+    websocket.send(json.dumps(data))
 ```
 
+Your job is to edit the `app.py` code to handle the three different types of JSON messages shown below. These data formats are abitrary -- we just made them up as reasonable ways to send login, disconnect, and chat information. You could set these messages up however you want, but we just made some decisions here about how to do things:
 
-### Deployment Notes
-Although we are using Node to build and run our React app, we will ultimately be compiling our React app to HTML, CSS, and JavaScript so that the browser can download these files from our website and run them client-side. It's confusing, but the final output of our React App is client-side code that our browser will run.
+1. **Login**: `{ "type": "login", "username": "my_username" }`
+1. **Disconnect**: `{ "type": "disconnect", "username": "my_username" }`
+1. **Chat**: `{ "type": "chat", "text": "is this working?", "username": "my_username" }`
 
-Try building your React App by issuing `npm run build` on the command line. The resulting build folder will have "vanilla" HTML, CSS, and JavaScript that your browser understands.
+You will handle each of these messages according to the specifications outlined below:
 
+### 1. Login
+If `data.get('type')` is "login", add the socket and the logged in user to the `logged_in_users` dictionary:
 
-## Your Tasks
-
-{:#step1}
-### Step 1: Component Hierarchy
-As described in the <a href="https://reactjs.org/docs/thinking-in-react.html" target="_blank">Thinking in React</a> piece, it is important to be able to look at a wireframe / mockup and consider what might constitute a component (keeping in mind that components can have child components).
-
-Given (a) the starter `App.js` file we have given you and (b) what you already know about the "Photo App" app you made in Homework 4, think about how you might break up this web app into different components, where each one does a small job within the larger application:
-
-```jsx
-import React from 'react';
-
-class App extends React.Component {  
-
-    render () {
-        return (
-            <div>
-
-            <nav className="main-nav">
-                <h1>Photo App</h1>
-                {/* Navigation Links */}
-            </nav>
-
-            <aside>
-                <header>
-                    Profile
-                    {/* Navigation Links */}
-                </header>
-                <div className="suggestions">
-                    <p className="suggestion-text">Suggestions for you</p>
-                    <div>
-                        Suggestions
-                        {/* Suggestions */}
-                    </div>
-                </div>
-            </aside>
-
-            <main className="content">
-                <header className="stories">
-                    Stories
-                    {/* Stories */}
-                </header>
-                <div id="posts">
-                    Posts
-                    {/* Posts */}
-                </div>
-            </main>
-
-            </div>
-        );
-    }
-}
-
-export default App;
-
+```python
+logged_in_users[websocket] = data.get('username')
 ```
 
-One potential strategy (though there could certainly be others) might involve splitting up your functionality into 5 top-level components, where each component has 1 job:
+Then, send the following message back to each client:
 
-| 1. | **NavBar component** | Responsible for displaying the name of the logged in user, and perhaps a menu down the line. |
-| 2. | **Profile component** | Responsible for displaying a profile of the logged in user. | 
-| 3. | **Suggestions component** | Responsible for displaying suggested users to follow. | 
-| 4. | **Stories component** | Responsible for displaying recent stories of people you're following. | 
-| 5. | **Posts component** | Responsible for displaying the posts in your news feed. | 
-
-Note that each of these top-level components may also have sub-components. For instance, `Posts` will probably be comprised of `Post` components, and each `Post` component will be comprised of, say, `Comments`, a `LikeButton`, a `BookmarkButton`, and potentially others. Here's one way of visualizing this heirarchy:
-
-<img style="width:100%;margin:20px 0px;" src="/spring2022/assets/images/homework/hw06/react-diagram.svg" />
-
-
-Think about what your `render()` function might look like for each component, and which of your components might issue fetch requests.
-
-{:#step2}
-### Step 2: Create stubs for each component
-Once you've decided on your components, create a JavaScript file for each of the 5 components listed above -- `NavBar`, `Profile`, `Suggestions`, `Stories`, `Posts` -- in your `src` directory. In each JavaScript file, create a react component and a simple render function that renders only the JSX elements associated with it. So, for instance, the `Posts` component would render a `div` element (and eventually the list of posts):
-
-```jsx
-import React from 'react';
-
-class Posts extends React.Component {
-  
-    constructor(props) {
-        super(props);
-        // initialization code here
-    }
-
-    componentDidMount() {
-        // fetch posts and then set the state...
-    }
-
-     render () {
-        if (!this.state.posts) {
-            return (
-                <div>Before posts fetched from server</div>  
-            );
-        }
-        return (
-            <div>
-                <div>List of Posts goes here...</div>
-                {/*
-                this.state.posts.map(post => {
-                    return <Post post={post} key={'post-' + post.id} />
-                }
-                */}
-            </div>
-        );     
-    }
-}
-
-export default Posts;
-```
-
-When you're done creating all of your components, refactor your `App.js` so that the render function is using your React components (don't forget to import them all). Note that in the sample code shown below, the `NavBar` component is accepting two custom properties: "title" and "username." Please review <a href="https://reactjs.org/docs/components-and-props.html" target="_blank">components and props</a> if you have any questions about how that works.
-
-```jsx
-import React from 'react';
-import NavBar from './NavBar';
-import Profile from './Profile';
-import Stories from './Stories';
-import Suggestions from './Suggestions';
-import Posts from './Posts';
-
-class App extends React.Component {  
-
-    render () {
-        return (
-            <div>
-                <NavBar title="Photo App" username="test_user" />
-                
-                <aside>
-                    <Profile />
-                    <Suggestions />
-                </aside>
-
-                <main className="content">
-                    <Stories />
-                    <Posts />
-                </main>
-
-            </div>
-        );
-    }
-}
-
-export default App;
-```
-
-If you get stuck, please take a look at `hints/hint-1`.
-
-{:#step3}
-### Step 3. Implement the "Posts" and "Post" Components
-Next, modify the logic of your `Posts` component to display all of the posts in the news feed. Recall that in the React model, your fetch logic and your rendering logic are decoupled. In other words, you'll probably want to:
-  
-* Fetch the posts from a working "Photo App" endpoint (we recommend running your HW5 Flask instance and accessing this endpoint: <a href="/api/posts">/api/posts</a>.
-* Save the fetched posts in your state object.
-* Render the posts (recall that each time you issue a call to the built-in `this.setState()` method, React automatically re-renders your component -- like magic).
-* Because each post is complex, and will likely be refactored into several different subcomponents, go ahead and create a new `Post.js` component. It can be simple for now (just display the username, photo, and caption). Take a look at `hints/hint-2` if you get stuck.
-
-#### Handling Authentication / Interaction with your REST API
-Given that your Flask Server now requires your JWT token, we have created a helper function that will request and store an access token in your cookies before running your React app. See `src/index.js` for more information. 
-
-In order to issue requests with the required credentials, you will need to pass the JWT token in the header of your fetch requests. We have created a convenience function in the `src/utils.js` file called `getHeaders()`. See `hints/hint-2` for an example of how to use this function.
-
-On line 5 of `package.json`, is a "proxy server" instruction:
-
-```json
+```python
 {
-  "name": "photo-app-react",
-  "version": "0.1.0",
-  "homepage": "./",
-  "proxy": "http://127.0.0.1:5000",
-  "private": true
-  ...
+    "type": "login",
+    "users": list(logged_in_users.values())
 }
 ```
 
-This instruction tells React that when you issue a request to, say, `/api/posts`, your request will be directed to use `http://127.0.0.1:5000`. If you prefer to interact with a different REST API server, just switch out the proxy address in `package.json` and re-run your react server. Feel free to use the class server if your HW5 is still in flux: <a href="https://photo-app-secured.herokuapp.com" target="_blank">https://photo-app-secured.herokuapp.com</a>
+You can test this by opening `lab08/client/index.html` in your web browser, clicking the "Connect" and "Set Name" buttons (and also providing a username), and seeing if you get the correct JSON output in the browser console.
 
-{:#step4}
-### Step 4. Implement the LikeButton Components
-Recall from HW4 that when the user clicks the "like button," a request is issued to the `/api/posts/<post_id>/likes` endpoint to either create or delete a like entry in the `likes_posts` table. This update causes a change to the post's information (# of likes), which needs to be re-fetched from the server and re-displayed. In this exercise, you will create a brand new `LikeButton` component, whose job it will be to issue Like/Unlike requests to the server, and to draw the heart.
+### 2. Disconnect
+If the `data.type` is "disconnect", removed the user from the logged_in_users dictionary. 
 
-The `LikeButton` also needs to notify the `Post` component to redraw after it fetches data from the server. Therefore, you're going to have to figure out how to communicate between your components. When you click on the heart in your `LikeButton` component, how can notify your `Post` component to requery the server and re-render? To learn how this might be done, re-read the <a href="https://reactjs.org/docs/lifting-state-up.html" target="_blank">lifting up state</a> page, which provides guidance. The strategy discussed involves:
+```python
+del logged_in_users[websocket]
+```
 
-1. Creating a method in the parent (`Post`) component to requery for the Post and set the Post component's state.
-1. Making this method is available to the `LikeButton` component (by passing it in as a property).
-1. Ensuring that this method is called by the `LikeButton` component after the like/unlike functionality completes.
+Then, send the following message back to each client:
 
+```python
+{
+    "type": "disconnect",
+    "users": list(logged_in_users.values())
+}
+```
 
-{:#step5}
-### Step 5. Implement the BookmarkButton Component
-Following the same strategy you used in Step 4, create a `BookmarkButton` component. This component's job is to draw the bookmark icon, issue bookmark/unbookmark requests to the `/api/bookmarks` endpoint, and to notify the `Post` component that it needs to re-fetch and redraw the post.
+You can test this by opening `lab08/client/index.html` in a second browser tab and clicking the "Connect" and "Set Name" buttons (and also providing a username). Then, close the browser tab you just opened. Now go back to your first browser tab and look at the console. You should see a messages in the console indicating that a user both connected and then disconnected from the chat server.
 
-{:#step6}
-### Step 6. Fill Out the Accessibility Questionnaire
-#### A. Accessibility Questionnaire 
-This quarter, we assigned a few accessibility activities -- to encourage you to think about how people might interact with your applications without mouse or using a screen reader. To reflect on this process, please fill out the <a href="https://t.ly/SK2i" target="_blank">Accessibility Questionnaire</a>.
+### 3. Chat
+If the `data.get('type')` is "chat", just send the `data` object to each client (no processing needed). You can test this by sending a chat message in the client and then seeing if you get the correct JSON output in the browser console.
 
-#### B. Accessibility Research Study
-We also wanted to invite you to participate in a research study -- to examine and reflect on how to better teach students about accessibility within the software development process. Please fill out this <a href="https://t.ly/x5M7" target="_blank">Consent to participate in research form</a> to let us know whether or not you are willing participate in this study. Participation is **totally optional.** 
+If the `data.get('type')` isn't "login," "disconnect," or "message", ignore the message (don't pass it on), and log it to the console: `console.log('Unrecognized message type:', data);`
+
+### Relaying the message to everyone
+Finally, you will write code that will iterate through the tracked websockets from the `logged_in_users` and broadcast the received message to all of the connected clients:
+
+```python
+for sock in logged_in_users:
+    # Be sure to replace "data" with a message that conforms to
+    # the specs above:
+    await sock.send(json.dumps(data))
+```
+
+> ### Note
+> If we were building this into a full application, we would (probably) store each user, conversation, and message in a database to load the appropriate chat history whenever the user opens the application. For now, messages will just be stored on the client and not be persisted between sessions (perhaps a privacy feature?).
+
+## 2. Implement the Client Functionality
+
+Open `index.html` in your browser. The interface is a simple chat interface that allows the user to select a chatroom (just localhost for now), set their name, and send messages to other users in the chatroom. 
+
+Now open `client.js` in VS Code and take a look at it. Much of this (simple) client has already been implemented for you, including:
+
+* Initializing the connection when the user clicks the "Connect" button
+* Logging the user in when the user clicks the "Set Name" button
+* Sending messages to the server when the user clicks the "Send" button
+
+**Your job** will be to implement the `connection.onmessage` event handler, which will update the UI whenever the client receives a message from the server. You will handle server messages according to the specifications outlined below:
+
+### 1. Login or Disconnect
+If the data.type is "login" or "disconnent", display the list of logged in users in the #users-list div (right-hand panel).
+
+### 2. Chat
+If data.type is "chat", append the chat message to the #chat div (main panel) with the sender's name and message. Use the "left" and "right" classes to differentiate the current user from all the other users.
+
+If your client and server are both working, you should be able to open `index.html` in two separate browser tabs, log in to the same server on each, and send messages between them (se video below)!
+
+<img class="large frame" style="width:100%;" src="/spring2022/assets/images/labs/lab08/lab-8-demo.gif" />
+
+## 3. (Optional) Deploy with ngrok
+
+Ngrok is a command line tool for creating a secure URL that points to server that is running on your local computer. Using this url, others can access your server securely without you having to host it online.
+
+You should [sign up](https://dashboard.ngrok.com/signup) for ngrok using your Northwestern email and [download](https://ngrok.com/download)/extract the version for your preferred OS.
+
+Run `ngrok help`; if the command fails, find the location where the ngrok executable was downloaded to and add the folder to your system PATH. Then, run `ngrok authtoken <token>` with the token listed in your ngrok dashboard.
+
+<img class="large frame" src="/spring2022/assets/images/labs/lab08/img3.png" />
+
+With your server running in another terminal window, type `ngrok http 8081` to open a tunnel to your server. You should now be able to add the forwarding url (minus the http://) to the list of servers on your client and use it as a separate chat room.
+
+If you want, feel free to send the link to any open tunnels to your app in the Zoom chat so others can connect to it with their clients. Ideally, we'll be able to create several open chatrooms that your classmates can use!
 
 ## What to Turn In
-When you're done, zip your `lab09` directory and submit your zip file to Canvas. Please **DO NOT** include your `node_modules` in the zip file (which will add hundreds of megabytes to your zip file).
 
-> ### Appreciations
-> And while you're at it, please take a moment to thank  / write a note to a peer mentor who helped you in some way (even if you just take 30 seconds to do it). Peer mentors are students too, and most of them do waaaay more than what is officially asked of them in order to support you. This form is completely anonymous.
-> 
-> <a href="https://forms.gle/39oWerrVYaasgNd28" target="_blank">https://forms.gle/39oWerrVYaasgNd28</a>
+When you're done, zip the completed folder and submit it to Canvas.

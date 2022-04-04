@@ -66,7 +66,7 @@ Please read the following:
 * Towards Data Science. <a href="https://towardsdatascience.com/virtual-environments-104c62d48c54#8025" target="_blank">Intro to Python Virtual Environments</a>
 
 ## 4. Set Up
-If you haven't used Python before, please download and install it: <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a>.
+If you haven't used Python before, please download and install it: <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a>. Any version of python >= 3.7 will work.
 
 Once Python is installed, download lab02.zip (below), unzip it, and move your lab02 folder inside of your webdev-labs folder. 
 
@@ -90,7 +90,10 @@ webdev-labs
     └── templates
 ```
 
-Using Terminal (Mac),  GitBash (Windows), or the Command Prompt (Windows) to navigate to your lab02 folder. Then, set up a virtual environment and install the dependencies:
+### Set Up Your Virtual Environment
+Open the terminal and navigate to your lab02 folder. Then, set up a virtual environment and install the dependencies as follows (depending on your operating system):
+
+#### For Mac, Unix, Linux, or GitBash
 
 ```bash
 python3 -m venv env
@@ -98,16 +101,25 @@ source env/bin/activate
 pip install -r requirements.txt    # install dependencies
 ```
 
-If that doesn't work (usually on Windows), try:
+#### For Windows Powershell or Command Prompt
+
 ```bash
-py -m venv env
-source env/bin/activate
-pip install -r requirements.txt    # install dependencies
+# create the virtual environment
+py -m venv env  
+
+# run the activate.bat script as follows:
+env\Scripts\activate
+
+# and finally, install the Python dependencies
+py -m pip install -r requirements.txt
 ```
+
+### Run Your Flask Web Server
 
 When you're done, try running your flask app from your command line:
 
-### Mac or Linux
+#### Mac or Linux
+
 ```bash
 # set environment variables (you just have to do this once per session)
 export FLASK_APP=app.py     
@@ -117,7 +129,8 @@ export FLASK_ENV=development
 flask run
 ```
 
-### Windows
+#### Windows Command Prompt
+
 ```bash
 # set environment variables (you just have to do this once per session)
 set FLASK_APP=app.py
@@ -129,6 +142,14 @@ flask run
 # py -m flask run
 # python3 -m flask run
 # python -m flask run
+```
+
+#### Powershell
+```bash
+$env:FLASK_APP="app.py"
+$env:FLASK_ENV="development"
+
+flask run
 ```
 
 You should see the following output:
@@ -153,15 +174,14 @@ Sarah will keep adding FAQs to this section. Some known issues:
 
 
 ## 5. Required Flask Exercises
-Once you've set up your flask installation, you will do 5 short exercises:
+Once you've set up your flask installation, you will do 4 required exercises:
 
 |  | Exercise | Purpose |
 |--|--|--|
 | 1. | [Display personalized greeting](#task_1) | Practice generating and sending a dynamic string via HTTP |
 | 2. | [Create a template](#task_2) | Practice creating a data-driven, server-side HTML file from a template. Templates allow you to separate the data from the presentation of the data. |
 | 3. | [Accessing data from other servers](#task_3) | Practice retrieving data from another server using query parameters. |
-| 4. | [Accessing data from other servers](#task_4) | Practice retrieving data from another server and sending it to a client. |
-| 5. | [XXX](#task_5) | Practice retrieving data from another server and sending it to a client. |
+| 4. | [Create a data-driven template](#task_4) | Practice retrieving data from another server and sending it to a client. |
 
 Please complete the following exercises to get a sense of the kinds of things you can do with Flask:
 
@@ -251,7 +271,7 @@ Feel free to replace the cities and search terms with your own! Basic takeaway: 
 
 <img class="large frame" src="/spring2022/assets/images/labs/lab02/data-feed-miami-cuban.png" />
 
-
+{:#task_4}
 ### 4. Create a data-driven template
 Now, you're going to create a data-driven **template** to display information about the "Top Restaurant" (according to Yelp) that matches your search criteria. Consider the following code:
 
