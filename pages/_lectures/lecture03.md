@@ -9,6 +9,11 @@ due_date: 2022-04-04
 slides:
     - url: https://docs.google.com/presentation/d/1s857M_niro-rNFLkJPXa2dCo_9geUpNzQEQZCnyazPQ/edit?usp=sharing
       title: Intro to HTML & CSS
+videos:
+    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2b3c205d-62e4-40f1-b735-ae6d0127ca72
+      duration: "46:24"
+      live: 1
+      title: Recorded Lecture Video
 exercise_url: lecture03.zip
 ---
 
