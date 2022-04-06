@@ -6,6 +6,11 @@ draft: 0
 show_schedule: 1
 num: 4
 due_date: 2022-04-06
+videos: 
+    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eb2cedec-b2c7-4231-ad07-ae6f01280af3
+      duration: "46:19"
+      live: 1
+      title: Recorded Lecture Video
 slides:
     - url: https://docs.google.com/presentation/d/1WqX9E0Vk4PmnT2gjAN-AX6otW2nEOEqgJrJrt5mFiSk/edit?usp=sharing
       title: "Lab 2 Preview"
