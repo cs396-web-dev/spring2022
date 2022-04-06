@@ -1,12 +1,14 @@
 ---
 layout: module
-title: "CSS Layouts"
+title: "CSS Layouts (and a quick Lab 2 preview)"
 type: lecture
 draft: 0
 show_schedule: 1
 num: 4
 due_date: 2022-04-06
-
+slides:
+    - url: https://docs.google.com/presentation/d/1WqX9E0Vk4PmnT2gjAN-AX6otW2nEOEqgJrJrt5mFiSk/edit?usp=sharing
+      title: "Lab 2 Preview"
 ---
 
 ## Readings
@@ -38,4 +40,4 @@ CSS Grid and Flexbox are learned best through example. That said, these games wi
 * <a href="https://flexboxfroggy.com/" target="_blank">Flexbox Froggy</a> (very helpful -- worth doing)
 * <a href="https://cssgridgarden.com/" target="_blank">CSS Grid Garden</a> (also recommended)
 
-In today's class, we will be doing a bit more HTML & CSS review (which you will continue practicing in HW1).
+In today's class, we will continue our HTML & CSS Exploration from [Lecture 3](lecture03) by completing a few alignment exercises (which you will continue practicing in HW1). 

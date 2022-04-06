@@ -14,6 +14,8 @@ videos:
 slides: 
     - url: https://docs.google.com/presentation/d/1P4ytIPER9oPicynW_HCVTdwTJreLz-L5Qz9mJry4fp0/edit?usp=sharing
       title: Building Your Own API
+    - url: https://docs.google.com/presentation/d/14xiKkwozwRqQH1KiSwUqcNn8f1KrEywSZK_esV7fohc/edit?usp=sharing
+      title: "Building REST API Endpoints (Continued)"
 readings:
     - url: https://flask-sqlalchemy.palletsprojects.com/en/2.x/
       title: Flask and SQLAlchemy Documentation
@@ -21,6 +23,12 @@ readings:
       title: Making REST APIs with Flask using Flask RESTful Documentation
     - url: https://www.sqlalchemy.org/features.html
       title: "SQLAlchemy Overview"
+    - url: https://realpython.com/primer-on-python-decorators/
+      title: Introduction to python decorators
 ---
 
-Now that we have gone over some of the principles of REST, we will practice building some REST API endpoints using some python helper libraries: SQLAlchemy and Flask RESTful. You can read about them below:
+Now that we have gone over some of the principles of REST, we will practice building some REST API endpoints using some python helper libraries: SQLAlchemy and Flask RESTful. 
+
+<!-- Today we will be creating the "Bookmarks" endpoint for homework 3 in order to discuss strategies for approaching the homework assignment. We will also practice using the automated tests, and examine the usefulness of "decorators." -->
+
+You can read about them below:
