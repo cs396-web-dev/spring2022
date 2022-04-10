@@ -26,7 +26,4 @@ readings:
       notes: "We'll be processing this in class together and in lab"
 ---
 
-In today's class, we will review Lab 2, and discuss some additional server-side framework features. In particular:
-1. Creating REST APIs,
-2. Generating server-side templates, and 
-3. Interacting with databases.
+In today's class, we will go over a few high-level principles involving web accessibility. We will review Lab 2, and discuss some additional server-side framework features.

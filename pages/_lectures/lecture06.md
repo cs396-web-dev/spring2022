@@ -2,19 +2,31 @@
 layout: module
 title: Intro to Databases
 type: lecture
-draft: 1
+draft: 0
 show_schedule: 1
 num: 6
 due_date: 2022-04-13
-slides: 
-    - url: https://docs.google.com/presentation/d/1N6SxLEWvgCELOZuWK8ZhbP9bEqs_lzGza0VZmYroxv8/edit?usp=sharing
-      title: "Flask Continued; Intro to Databases"
-videos: 
-    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a42d03b8-5688-42d0-9c68-ae22013377cd
-      title: "Recorded Lecture Video"
-      live: 1
-      duration: "1:03:59"
+# slides: 
+#     - url: ""
+#       title: "Intro to Relational Databases"
+readings: 
+    - url: https://www.linkedin.com/learning/learning-sql-programming-8382385
+      title: "Learning SQL Programming"
+      source: "LinkedIn Learning"
+      sections:
+        - Learning SQL Programming (01:12)
+        - What is a database? (01:52)
+        - What is SQL? (06:14)
+        - Section 1. Ask for Data from a Database (8 videos + Quiz)
+        - Section 2. Ask for Data from Two or More Tables (5 videos + Quiz)
+        - Section 4. Add or Modify Data (5 videos + Quiz)
+# videos:
+#     - url: ""
+#       title: "Recorded Lecture Video"
+#       live: 1
+#       duration: "1:03:59"
+
 
 ---
 
-Today we will talk about how flask works (and how web services work more broadly), and then get a preview of SQL.
+Today we will go over SQL in preparation for Lab03. You have assigned videos for this week if you are new to SQL.
