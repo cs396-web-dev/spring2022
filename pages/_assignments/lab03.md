@@ -9,6 +9,20 @@ num: 3
 due_date: 2022-04-15
 ---
 
+<style>
+    table.admin th:first-child, 
+    table.admin td:first-child {
+        width: auto;
+        min-width:200px;
+    }
+
+    table.admin th:last-child, 
+    table.admin td:last-child {
+        width: auto;
+        min-width:180px;
+    }
+</style>
+
 ## 1. Introduction
 
 {:.blockquote-no-margin}
@@ -18,7 +32,8 @@ due_date: 2022-04-15
 > {:.compact}
 > 1. [Installing PostgreSQL](#installation)
 > 2. [Configuring](#configuration) PGAdmin and the command line interface
-> 3. [Writing queries](#sql) to create, read, update, and delete (CRUD) data from your database.
+> 3. [Walking through the SQL Rules](#sql) to create, read, update, and delete (CRUD) data from your database.
+> 4. [Completing the SQL exercises](#practice)
 
 ### Why are we learning to use a relational database? 
 
@@ -39,40 +54,40 @@ GROUP BY users.username
 ORDER BY count(posts.id) desc;
 
 
-
      username      | post_count 
--------------------+-----------
- matthew_cook      |    12
- pamela_rivas      |    12
- nicholas_kerr     |    12
- edwin_rodriguez   |    12
- timothy_green     |    11
- amanda_brown      |    10
- benjamin_duran    |    10
- nicholas_fleming  |    10
- carolyn_james     |    10
- dana_turner       |     9
- douglas_baker     |     9
- jennifer_spencer  |     9
- david_barrett     |     9
- franklin_anderson |     9
- julie_mueller     |     8
- dennis_chan_iv    |     8
- craig_miller      |     8
- jeffrey_conner    |     8
- natalie_miller    |     8
- marcia_newton     |     8
- michael_fox       |     8
- donna_brown       |     7
- carlos_johnson    |     7
- thomas_choi       |     6
- cody_young        |     6
- sarah_wong        |     6
- michelle_nichols  |     6
- kristy_norris     |     6
- daniel_stanley    |     6
- luis_cameron      |     6
-(30 rows)
+-------------------+------------
+ adam_wilcox       |         12
+ shannon_dyer      |         12
+ mary_green        |         12
+ rachel_murphy     |         12
+ jamie_evans       |         12
+ john_hughes       |         12
+ erika_smith       |         12
+ carla_fleming     |         11
+ timothy_maldonado |         11
+ lori_horton       |         11
+ mr._daniel_turner |         10
+ heather_moore     |         10
+ david_robinson    |         10
+ webdev            |         10
+ russell_sellers   |         10
+ ryan_valentine    |          9
+ geoffrey_reed     |          9
+ rebecca_brown     |          9
+ daniel_myers      |          9
+ jason_morris      |          9
+ rodney_marshall   |          8
+ stephen_landry    |          8
+ nicholas_khan     |          8
+ john_morales      |          8
+ barbara_armstrong |          8
+ kayla_johnson     |          7
+ tyler_williams    |          7
+ sharon_ritter     |          7
+ david_cole        |          7
+ barbara_stone     |          6
+ george_thomas     |          6
+(31 rows)
 ```
 
 With very few lines of "declarative" code, we have merged two data structures together, selected a few attributes, counted the posts by user, and sorted the post_counts in decending order. It's useful to think about how you might do something like this manually, with python, if you had 2 lists of dictionaries (doable, but it would take a lot longer).
@@ -94,7 +109,7 @@ In order to complete today's lab, you will need to install PostgreSQL on your la
     * **DO NOT FORGET** the DB Admin password you assign for the `postgres` account
     * Take all the defaults, and use a default port of `5432`
     * If, for some reason, port 5432 is taken, just use the suggested port given by the installer (and make a note of it)
-    * You don't need to install the "Stack Builder"
+    * You do NOT need to install the "Stack Builder" (unless you want to)
 
 {:#configuration}
 ## 2. Configuration
@@ -114,15 +129,14 @@ You have a few options for interacting with your database:
 ### 1. PGAdmin
 PGAdmin is a GUI tool for managing PostgreSQL databases. 
 
-### 2. psql
-psql is the command line interface for interacting with PostgreSQL databases. Open your Terminal or command prompt and type `psql -U postgres`. 
-* If the `psql -U postgres` command was recognized, jump to section 4 (overview of commands). Otherwise, you'll have to add it to your path by following the instructions below.
+### 2. Adding psql to your path
+`psql` is a command line program that allows you to interact with PostgreSQL databases. Open your Terminal or command prompt and type `psql -U postgres`. 
+* If the `psql -U postgres` command was recognized, jump to [Section 3](#sql) ("Walkthrough of SQL Commands"). Otherwise, you'll have to add it to your path by following the instructions below.
 
-#### Adding psql to your path: Mac instructions
+#### 1. Mac instructions
 Note: you only have to do this if the `psql -U postgres` command was NOT recognized on your Terminal.
-1. Find the location of your `psql` executable on your computer by typing the following into the terminal: `locate psql | grep /bin`
-1. Copy the path (for Sarah, it's located at `/Library/PostgreSQL/14/bin/psql`)
-1. Figure out which shell you're using by typing: `echo $SHELL`.
+1. Find the location of your `psql` executable on your computer by searching for `psql`. Make a note of where it is (for Sarah, it's located at `/Library/PostgreSQL/14/bin/psql`)
+1. Open a Terminal window. Figure out which shell you're using by typing `echo $SHELL` at the command prompt.
 1. Depending on the shell version you're using, open *one* of the files below (in your home directory) in a text editor:
     * for bash, edit one of these:
         * `~/.bashrc`
@@ -141,7 +155,7 @@ You can read more about each shell here:
 * <a href="https://apple.stackexchange.com/questions/388622/zsh-zprofile-zshrc-zlogin-what-goes-where" target="_blank">zsh</a>
 
 
-#### Adding psql to your path: Windows instructions
+#### 2. Windows instructions
 Note: you only have to do this if the `psql -U postgres` command was NOT recognized on your command prompt.
 Follow <a href="https://sqlbackupandftp.com/blog/setting-windows-path-for-postgres-tools" target="_blank">this tutorial</a>. Notes:
 1. You will first need to find where your PostgreSQL bin has been installed on your computer. Should be something like: `C:\Program Files\PostgreSQL\14\bin`
@@ -150,12 +164,14 @@ Follow <a href="https://sqlbackupandftp.com/blog/setting-windows-path-for-postgr
 1. Finally, type `psql -U postgres` on your command line and it should work.
 
 {:#sql}
-## 3. Writing some SQL Commands
+## 3. Walkthrough of SQL Commands
+This section walks you through some of the SQL commands you will be using in [Part 4](#practice). Please try executing these commands to understand how they work:
 
-### Administrative commands if you use the command line interface
+### 1. Administrative commands if you use the command line interface
 To enter the postgreSQL shell, type: `psql -U postgres` (connecting as the postgres superuser). Once you're in the psql shell, try using the following commands:
 
-| Command | Explanation | Description |
+{:.admin}
+| Command | Explanation | Example |
 |--|--|--|
 | `\q` | Exits the postgres shell | |
 | `\l` | Lists all the available databases | |
@@ -168,7 +184,7 @@ To enter the postgreSQL shell, type: `psql -U postgres` (connecting as the postg
 
 Consult <a href="https://www.postgresqltutorial.com/psql-commands/" target="_blank">this guide</a> for more details.
 
-### SQL Commands for Selecting
+### 2. SELECT
 After you've connected to a database, you can query and manipulate data. Selecting is the most complex part of the SQL language. Some of the most commonly used commands in a select statement are listed below:
 
 | Clause | Example | Documentation |
@@ -179,7 +195,7 @@ After you've connected to a database, you can query and manipulate data. Selecti
 | INNER JOIN | Joins two tables where the values of two columns are equal. For instance, if we want to know the usernames of the people who Thomas Choi (id=3) is following, we would join the `following` table to the `users` table as follows:<br><br>SELECT following.id, users.username<br>FROM following<br>INNER JOIN users ON following.following_id = users.id<br>WHERE following.user_id = 3; | <a href="https://www.postgresqltutorial.com/postgresql-inner-join/" target="_blank">INNER JOIN docs</a> |
 | GROUP BY | The Group By statement allows you aggregate your data  (e.g. sum, count, etc.) by groupings. For instance, if you want to know how many posts each user has made or how many likes each post has, the GROUP BY function can help:<br><br>SELECT user_id, count(\*) FROM bookmarks GROUP BY user_id ORDER BY count(*) desc; | <a href="https://www.postgresqltutorial.com/postgresql-group-by/" target="_blank">GROUP BY docs</a> |
 
-### SQL Commands for Updating
+### 3. UPDATE
 Updating allows you to alter records in a table. The syntax is as follows:
 
 ```sql
@@ -199,7 +215,7 @@ A common mistake is forgetting to include the where clause. Without it, the upda
 
 <a href="https://www.postgresqltutorial.com/postgresql-update/" target="_blank">UPDATE docs</a>
 
-### SQL Commands for Inserting
+### 4. INSERT
 Inserting allows you to add records to a table. The syntax is as follows:
 
 ```sql
@@ -214,7 +230,7 @@ VALUES('Great photo!', 5, 3, now());
 ```
 <a href="https://www.postgresqltutorial.com/postgresql-insert/" target="_blank">INSERT docs</a>
 
-### SQL Commands for Deleting
+### 5. DELETE
 The DELETE statement allows you to delete one or more rows from a table.
 
 ```sql
@@ -230,9 +246,10 @@ Note: if you forget to include the where clause, you will delete every record in
 
 <a href="https://www.postgresqltutorial.com/postgresql-delete/" target="_blank">DELETE docs</a>
 
-## 5. Your Task
+{:#practice}
+## 4. Your Tasks (What you will be turning in)
 
-For each of the exercises below, write the SQL statement that achieves the goal described in the prompt. When you've figured it out, paste the statement (or statements) into the answers.sql file beneath the corresponding exercise number.
+For each of the exercises below, write the SQL statement that achieves the goal described in the prompt. When you've figured it out, paste the statement (or statements) into the `answers.sql` file (that you downloaded) beneath the corresponding exercise number.
 
 ### 1. Selecting all columns
 Write a query to retrieve all of the records in the `users` table. It should return the following data:
@@ -277,7 +294,7 @@ Write a query to retrieve all of the records in the `users` table. It should ret
 ```
 
 ### 2. Selecting some columns
-Write a query to retrieve the id, first_name, and last_name of each record in the `users` table. It should return the following data:
+Write a query to retrieve the `id`, `first_name`, and `last_name` of each record in the `users` table. It should return the following data:
 
 {:.overflow}
 ```
@@ -318,7 +335,7 @@ Write a query to retrieve the id, first_name, and last_name of each record in th
 ```
 
 ### 3. Sorting
-Write a query to retrieve the id, first_name, and last_name of each record in the `users` table sorted by last_name. Use an `ORDER BY` clause. Your query should return the following data:
+Write a query to retrieve the `id`, `first_name`, and `last_name` of each record in the `users` table sorted by `last_name`. Use an `ORDER BY` clause. Your query should return the following data:
 
 {:.overflow}
 ```
@@ -359,7 +376,7 @@ Write a query to retrieve the id, first_name, and last_name of each record in th
 ```
 
 ### 4. Filtering
-Write a query to retrieve the id, user_id, and image_url for the `posts` created by Nicholas Khan (user_id=26). Use a `WHERE CLAUSE`. Your query should return the following data:
+Write a query to retrieve the `id`, `user_id`, and `image_url` for the `posts` created by Nicholas Khan (user_id=26). Use a `WHERE CLAUSE`. Your query should return the following data:
 
 {:.overflow}
 ```
@@ -377,7 +394,7 @@ Write a query to retrieve the id, user_id, and image_url for the `posts` created
 ```
 
 ### 5. Filtering: logical operators
-Write a query to retrieve the id, image_url, and user_id for the `posts` created by either Nicholas Khan (user_id=26) or Rebecca Brown (user_id=12). It should return the following data:
+Write a query to retrieve the `id`, `image_url`, and `user_id` for the `posts` created by either Nicholas Khan (user_id=26) or Rebecca Brown (user_id=12). It should return the following data:
 
 {:.overflow}
 ```
@@ -456,7 +473,10 @@ Write a query that uses the `count` function and a `GROUP BY` clause to find out
 ```
 
 ### 8. Joining: two tables
-Write a query to retrieve the id, image_url, and user_id for the `posts` created by either Nicholas Khan (user_id=26) or Rebecca Brown (user_id=12) -- just like in #5. However, this time you will also join on the `users` table in order to also include `username`, `first_name`, and `last_name`. You will join the tables where the `user.id` matches `posts.user_id`. Your query should return the following:
+Write a query to retrieve the `id`, `image_url`, and `user_id` for the `posts` created by either Nicholas Khan (user_id=26) or Rebecca Brown (user_id=12) -- just like in #5. However, this time you will also join on the `users` table so that you can also display the `username`, `first_name`, and `last_name` of the creators. 
+* HINT: You will join the tables where the `user.id` is the same as `posts.user_id`. 
+
+Your query should return the following data:
 
 {:.overflow}
 ```
@@ -484,7 +504,11 @@ Write a query to retrieve the id, image_url, and user_id for the `posts` created
 ```
 
 ### 9. More joining practice: two tables
-Write a query that displays post information for all of the users that Nicholas Khan (user_id=26) is following. To do this, you will have to join the `posts` table with the `following` table.
+Write a query that displays the `id` and `pub_date` from the `posts` table alongside the `id` of the following table for all of the users that Nicholas Khan (user_id=26) is following. To do this, you will have to join the `posts` table with the `following` table.
+* HINT: Join where the `user_id` of the `post` table is the same as the `following_id` of the `following` table.
+
+
+Your query should return the following data:
 
 {:.overflow}
 ```
@@ -737,10 +761,14 @@ Please copy the latest version of your files to GitHub by issuing the following 
 
 ```shell
 git add .    # to check in your lab03 files
-git commit -am 'Commiting my completed lab03 files'
+git commit -m 'Commiting my completed lab03 files'
 git status   # to make sure that all of your files are being tracked
 git push     # sends your files to GitHub
 ```
 
 ### 2. Paste a link to your repo on Canvas
 Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for <a href="https://canvas.northwestern.edu/courses/163531/assignments/1055580" target="_blank">Lab 3</a>.
+
+### 3. Answer the following questions
+1. What is a join (just in your own words) and why is it useful?
+2. Consider the structure of the `posts` table: why would you want to use a foreign key (`user_id`) to the `users` table instead of storing the `username`, `first_name`, and `last_name` in the `posts` table?
