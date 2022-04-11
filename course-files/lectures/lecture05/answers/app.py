@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import render_template, request
 import requests
-from pprint import pprint
 
 # initializes flask app:
 app = Flask(__name__)
@@ -9,7 +8,7 @@ app = Flask(__name__)
 current_user = {
     'name': 'Walter',
     'username': 'walt2020',
-    'profile_pic': 'https://i.picsum.photos/id/237/200/300'
+    'profile_pic': 'https://picsum.photos/id/237/200/300'
 }
 
 @app.route('/')
@@ -25,24 +24,36 @@ def exercise1():
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
         <body>
-            <h1>Hello World!</h1>
+            <h1>Hello {name}!</h1>
+            <img src="{pic}" />
         </body>
         </html>
-    '''
+    '''.format(
+        name=current_user.get('name'),
+        pic=current_user.get('profile_pic')
+    )
 
 @app.route('/e2')
 def exercise2():
     return render_template(
-        'index.html'
+        'index.html',
+        profile=current_user
+    )
+
+@app.route('/e2b')
+def exercise2b():
+    return render_template(
+        'index.html',
+        profile=current_user,
+        message=request.args.get('message')
     )
 
 @app.route('/e3')
 def exercise3():
-    search_term = 'Beyonce'
+    search_term = request.args.get('term')
     url = 'https://www.apitutor.org/spotify/simple/v1/search?q={term}&type=track'.format(term=search_term)
     response = requests.get(url)
     tracks = response.json()
-    pprint(tracks)
     return render_template(
         'tracks.html',
         profile=current_user,
@@ -62,6 +73,7 @@ def exercise3():
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
 ></iframe>
 '''
+
 
 # enables flask app to run using "python3 app.py"
 if __name__ == '__main__':
