@@ -14,8 +14,8 @@ due_date: 2022-04-11
 #       live: 1
 
 # slides: 
-#     - url: https://docs.google.com/presentation/d/1_IsP2aeB8qL-RZSh5SofrxMYXIwtZuEhxH0p3hTAG0Y/edit?usp=sharing
-#       title: ""
+#     - url: https://docs.google.com/presentation/d/1vXLsTjoHmEL7gEiCbQTyVFp0aPtH0wu432brLP7H3k4/edit?usp=sharing
+#       title: "UI Accessibility Tips; Intro to Flask"
 readings:
     - url: https://nickjanetakis.com/blog/server-side-templates-vs-rest-api-and-javascript-front-end
       title: "Server Side Templates vs REST API and Javascript Front-End"

@@ -60,3 +60,8 @@ new_order_spotify = {
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
 ></iframe>
 '''
+
+
+# enables flask app to run using "python3 app.py"
+if __name__ == '__main__':
+    app.run()
