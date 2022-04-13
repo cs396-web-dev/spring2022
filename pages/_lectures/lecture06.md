@@ -6,9 +6,10 @@ draft: 0
 show_schedule: 1
 num: 6
 due_date: 2022-04-13
-# slides: 
-#     - url: ""
-#       title: "Intro to Relational Databases"
+exercise_url: lecture06.zip
+slides: 
+    - url: https://docs.google.com/presentation/d/1CKW1y3vflX8g8_IoUlM9Zqm9-_NJPhxYBnCoR2AI0uQ/edit?usp=sharing
+      title: "Intro to Databases with SQL"
 readings: 
     - url: https://www.linkedin.com/learning/learning-sql-programming-8382385
       title: "Learning SQL Programming"
