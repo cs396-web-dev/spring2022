@@ -21,11 +21,11 @@ readings:
         - Section 1. Ask for Data from a Database (8 videos + Quiz)
         - Section 2. Ask for Data from Two or More Tables (5 videos + Quiz)
         - Section 4. Add or Modify Data (5 videos + Quiz)
-# videos:
-#     - url: ""
-#       title: "Recorded Lecture Video"
-#       live: 1
-#       duration: "1:03:59"
+videos:
+    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=df1b79b5-04ea-4a78-bee9-ae760128478d
+      title: "Recorded Lecture Video"
+      live: 1
+      duration: "47:18"
 
 
 ---
