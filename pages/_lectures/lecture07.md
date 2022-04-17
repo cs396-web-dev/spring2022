@@ -2,19 +2,19 @@
 layout: module
 title: Intro to HTTP & REST
 type: lecture
-draft: 1
+draft: 0
 show_schedule: 1
 num: 7
 due_date: 2022-04-18
 exercise_url: lecture07.zip
-videos: 
-    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a320376-af06-4ced-b817-ae27013301bc
-      title: "Recorded Lecture Video"
-      live: 1
-      duration: "59:08"
-slides:
-    - url: https://docs.google.com/presentation/d/1kkX3CBDVEp9lWQw2Mb7o1_JFCcrmI_6bBXQYX6Rutcg/edit?usp=sharing
-      title: Intro to REST
+# videos: 
+#     - url: ""
+#       title: "Recorded Lecture Video"
+#       live: 1
+#       duration: "XX:XX"
+# slides:
+#     - url: ""
+#       title: Intro to REST
 readings:
   - url: https://medium.com/extend/what-is-rest-a-simple-explanation-for-beginners-part-1-introduction-b4a072f8740f
     title: "What is REST — A Simple Explanation for Beginners"
