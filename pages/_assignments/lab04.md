@@ -16,7 +16,7 @@ due_date: 2022-04-22
 </style>
 
 ## Overview / Set Up
-In today's lab, you're going to get starter with your homework by going through the first three sections of [Homework 3](hw03):
+In today's lab, you're going to get started with your homework by going through the first three sections of [Homework 3](hw03):
 
 {:.compact}
 1. Introduction
@@ -30,7 +30,7 @@ When you've finished parts 1-3, you will modify the /api/posts route for the GET
 1. Ensure that only the posts that the user has access to are returned. A user may have read access to a post if:
     * They created the post themselves.
     * They are following a user who created the post.
-1. Ensure that the limit paramter is honored. Furthermore, if it is invalid, an appropriate message should be returned to the user.
+1. Ensure that the limit parameter is honored. Furthermore, if it is invalid, an appropriate message should be returned to the user.
 
 ### Hints
 There are a few helper functions in `views/__init__.py` that may help you with security: 
