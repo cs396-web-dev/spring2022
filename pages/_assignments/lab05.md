@@ -1,6 +1,6 @@
 ---
 layout: assignment-two-column
-title: JavaScript Practice
+title: REST API Endpoint Activity
 type: lab
 abbreviation: Lab 5
 draft: 1

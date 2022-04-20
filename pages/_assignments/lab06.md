@@ -1,6 +1,6 @@
 ---
 layout: assignment-two-column
-title: Fetch API Lab
+title: JavaScript Practice
 type: lab
 abbreviation: Lab 6
 draft: 1
