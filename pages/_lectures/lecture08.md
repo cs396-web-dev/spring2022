@@ -11,11 +11,9 @@ due_date: 2022-04-20
 #       title: "Recorded Lecture Video"
 #       live: 1
 #       duration: "1:15:56"
-# slides: 
-#     - url: https://docs.google.com/presentation/d/1P4ytIPER9oPicynW_HCVTdwTJreLz-L5Qz9mJry4fp0/edit?usp=sharing
-#       title: Building Your Own API
-#     - url: https://docs.google.com/presentation/d/14xiKkwozwRqQH1KiSwUqcNn8f1KrEywSZK_esV7fohc/edit?usp=sharing
-#       title: "Building REST API Endpoints (Continued)"
+slides: 
+    - url: https://docs.google.com/presentation/d/1bGMSGRR6b9cIs4-g33zN5elgGYD5CtqAq7c5lz9QJYk/edit?usp=sharing
+      title: Building Your Own API
 readings:
     - url: https://flask-sqlalchemy.palletsprojects.com/en/2.x/
       title: Flask and SQLAlchemy Documentation
@@ -29,4 +27,4 @@ readings:
 
 Now that we have gone over some of the principles of REST, we will practice building some REST API endpoints using some python helper libraries: SQLAlchemy and Flask RESTful. 
 
-You can read about them below:
+You can read about them below.
