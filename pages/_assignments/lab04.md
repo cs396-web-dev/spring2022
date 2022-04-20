@@ -19,11 +19,10 @@ due_date: 2022-04-22
 The goal of this week's lab is to set up HW3 so that you're ready to work on HW3 in class next Monday. This will involve completing the following three parts of [Homework 3](hw03):
 
 {:.compact}
-1. [Introduction](hw03#webdev_1-introduction)
-1. [Setting everything up](hw03#webdev_2-setting-everything-up)
-1. [Background readings and concepts](hw03#webdev_3-background-readings-and-concepts)
+1. [Introduction](hw03#part1)
+1. [Setting everything up](hw03#part2)
+1. [Background readings and concepts](hw03#part3)
 
-{:.blockquote-no-margin}
 > ### Note: Everyone must have their own files working locally
 > If you are collaborating with a partner, it is important that **both partners** configure their computers to run the HW3 files locally. In subsequent submissions, we will ask that everyone submit a screenshot to demonstrate that you have successfully configured your computer so that the code runs. Please help your partner if they get stuck -- this is a team effort!
 
@@ -33,7 +32,7 @@ Please submit the following screenshots / documents in a zip file to get credit 
 {:.checkbox-list}
 * Screenshot of your local API tester: [http://localhost:5000/api](http://localhost:5000/api)
 * Screenshot of the output from your automated tests (failures=44, errors=11)
-* Screenshot of your flask shell running **any of the sample SQLAlchemy commands** from the [background readings and concepts](hw03#webdev_3-background-readings-and-concepts) section (so that we can verify that your flask shell is working and successfully issuing queries to your database). Try all of the CRUD (create, read, update, and delete) operations for the `Post` model.
+* Screenshot of your flask shell running **any of the sample SQLAlchemy commands** from the [background readings and concepts](hw03#part3) section (so that we can verify that your flask shell is working and successfully issuing queries to your database). Try all of the CRUD (create, read, update, and delete) operations for the `Post` model.
 * A text file (word doc, pdf, txt, etc.) that answers the following questions in your own words (1-2 sentences is fine):
     * What is the value of SQLAlchemy?
     * What is a model?
