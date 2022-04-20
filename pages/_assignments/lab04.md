@@ -1,6 +1,6 @@
 ---
 layout: assignment-two-column
-title: REST APIs
+title: Configuring Your REST API
 type: lab
 abbreviation: Lab 4
 draft: 0
