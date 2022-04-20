@@ -1,42 +1,44 @@
 ---
 layout: module
-title: Introduction to JavaScript
+title: Intro to Design with Accessibility in Mind (with Victoria Chávez)
 type: lecture
 draft: 1
 show_schedule: 1
-num: 10
+num: 9
 due_date: 2022-04-27
-exercise_url: lecture10.zip
-videos:
-    - url: https://northwestern.zoom.us/rec/share/Jz_MxbO16Jh01vduS0RrWrgxCHwSxzyR9TmN6U9kOSwHF5WdzW5JWyeC7cMuYKKJ.Zg_fcOcHTsxQM3Os
-      title: "Recorded Lecture Video"
-      live: 1
-      duration: "1:20:33"
-slides: 
-    - url: https://docs.google.com/presentation/d/1QnUHpSJC_nXh4JSRC5Wq4_SzPyiYSi8M1CYXSurZIIg/edit?usp=sharing
-      title: Intro to DOM Manipulation via JavaScript
+slides:
+   - url: https://docs.google.com/presentation/d/16pDtno-c8xzLO28OZxkFYkbhhkgLG8uknNUxDKieemQ/edit#slide=id.g10b431dafbb_0_50
+     title: Design with Accessibility in Mind
 readings:
-    - url: https://www.linkedin.com/learning-login/share?account=75814418&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcollections%2F6893810278556135425%3Ftrk%3Dshare_collection_url%26shareId%3DEHJm2ZttTJOxS6ju3Qlamg%253D%253D
-      title: "Playlist 1: Introduction to Javascript"
-      source: LinkedIn Learning
-    - url: https://www.linkedin.com/learning-login/share?account=75814418&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcollections%2F6893817922595491840%3Ftrk%3Dshare_collection_url%26shareId%3D0NeVKp3mQHa7VVUrYfRxcQ%253D%253D
-      title: "Playlist 2: Working with the DOM"
-      source: LinkedIn Learning
-    - url: https://www.destroyallsoftware.com/talks/wat
-      title: "JavaScript Wat Video"
-      author: "Gary Burnhardt" 
-      optional: 1
-    - url: "https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f"
-      title: "How it feels to learn JavaScript in 2016"
-      author: "Jose Aguinaga" 
-      optional: 1
+   - url: https://www.toptal.com/designers/ui/importance-web-accessibility
+     title: UX and the Importance of Web Accessibility
+     author: Laura Geley
+     date: 2018
+   - url: https://www.latimes.com/politics/story/2019-10-07/blind-person-dominos-ada-supreme-court-disabled
+     title: "Supreme Court allows blind people to sue retailers if their websites are not accessible"
+     source: LA Times
+     date: Oct., 2019
+   - url: https://onezero.medium.com/researchers-are-making-memes-accessible-to-the-blind-46b9ef0550da
+     title: "Researchers are making memes accessible to the blind"
+     author: Stokel-Walker, Chris 
+     date: Oct., 2019
+     source: Medium
+   - url: https://karlgroves.com/2013/09/05/the-6-simplest-web-accessibility-tests-anyone-can-do
+     title: The 6 Simplest Web Accessibility Tests Anyone Can Do
+     author: Groves, Karl
+     date: Sept., 2013
+     pick_one: 1
+   - url: https://www.youtube.com/watch?v=cOmehxAU_4s
+     title: "Watch: How I do an accessibility check -- A11ycasts #11"
+     author: Dodson, Rob
+     date: 2018
+     pick_one: 1
+   - url: http://www.nixdell.com/classes/HCI-and-Design-Spring-2017/p24-ladner.pdf
+     title: Design for User Empowerment
+     author: Ladner, Richard
+     source: Interactions (ACM)
+     date: Mar-Apr, 2015
+     optional: 1
 ---
 
-Today we will be finishing up our discussion of REST API Endpoints, and will be transitioning back to the front end, with an introduction to JavaScript. 
-
-In the next few assignments, we'll be interacting with our REST API via JavaScript (more on that next week)!
-
-<a class="nu-button" style="margin-top:20px;display:inline-block;" href="https://www.linkedin.com/checkpoint/enterprise/login/75814418?application=learning" target="_blank">
-    Login to LinkedIn Learning via Northwestern
-    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-</a>
+Guest lecture by Victoria Chávez.

@@ -1,6 +1,6 @@
 ---
 layout: module
-title: Client-side templating & the Fetch API
+title: Intro to JavaScript
 type: lecture
 draft: 1
 show_schedule: 1
