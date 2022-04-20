@@ -23,6 +23,10 @@ The goal of this week's lab is to set up HW3 so that you're ready to work on HW3
 1. [Setting everything up](hw03#webdev_2-setting-everything-up)
 1. [Background readings and concepts](hw03#webdev_3-background-readings-and-concepts)
 
+{:.blockquote-no-margin}
+> ### Note: Everyone must have their own files working locally
+> If you are collaborating with a partner, it is important that **both partners** configure their computers to run the HW3 files locally. In subsequent submissions, we will ask that everyone submit a screenshot to demonstrate that you have successfully configured your computer so that the code runs. Please help your partner if they get stuck -- this is a team effort!
+
 ## What to turn in
 Please submit the following screenshots / documents in a zip file to get credit for today's lab:
 
