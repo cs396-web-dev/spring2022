@@ -17,6 +17,6 @@ readings:
       title: Introduction to python decorators
 ---
 
-Today we will be finishing up our discussion of REST API Endpoints, and will be transitioning back to the front end, with an introduction to JavaScript. 
+Today we will be finishing up our discussion of REST API Endpoints by walking through how to implement the `/api/posts` endpoint.
 
 In the next few assignments, we'll be interacting with our REST API via JavaScript (more on that next week)!
