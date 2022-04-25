@@ -21,12 +21,10 @@ readings:
    - url: https://karlgroves.com/2013/09/05/the-6-simplest-web-accessibility-tests-anyone-can-do
      title: The 6 Simplest Web Accessibility Tests Anyone Can Do
      author: Groves, Karl
-     notes: "Note: Useful for Homework 1"
      date: Sept., 2013
    - url: https://www.youtube.com/watch?v=cOmehxAU_4s
      title: "Watch: How I do an accessibility check -- A11ycasts #11"
      author: Dodson, Rob
-     notes: "Note: Useful for Homework 1"
      date: 2018
    - url: https://www.latimes.com/politics/story/2019-10-07/blind-person-dominos-ada-supreme-court-disabled
      title: "Supreme Court allows blind people to sue retailers if their websites are not accessible"
