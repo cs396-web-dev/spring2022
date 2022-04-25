@@ -6,6 +6,10 @@ draft: 0
 show_schedule: 1
 num: 9
 due_date: 2022-04-25
+exercise_url: lecture09.zip
+slides: 
+    - url: https://docs.google.com/presentation/d/1yewIH2nAmZNjvYouYTMQrNCSXepVmNr1oQf5O_hcfsk/edit?usp=sharing
+      title: "HW3 Code Walkthrough"
 readings:
     - url: https://flask-sqlalchemy.palletsprojects.com/en/2.x/
       title: Flask and SQLAlchemy Documentation
