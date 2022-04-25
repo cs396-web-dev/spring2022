@@ -4,7 +4,7 @@ title: Intro to Design with Accessibility in Mind (with Victoria Chávez)
 type: lecture
 draft: 0
 show_schedule: 1
-num: 9
+num: 10
 due_date: 2022-04-27
 # slides:
 #    - url: ""

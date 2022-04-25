@@ -4,7 +4,7 @@ title: Building an API Endpoint
 type: lecture
 draft: 0
 show_schedule: 1
-num: 10
+num: 9
 due_date: 2022-04-25
 readings:
     - url: https://flask-sqlalchemy.palletsprojects.com/en/2.x/
