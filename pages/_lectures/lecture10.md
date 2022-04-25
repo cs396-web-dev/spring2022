@@ -46,5 +46,6 @@ readings:
      date: Mar-Apr, 2015
      optional: 1
 ---
-
-Guest lecture by Victoria Chávez.
+{:.blockquote-no-margin}
+> ## Hybrid Lecture Today
+> Guest lecture by Victoria Chávez. The lecture will be hybrid. Please use this link to join remotely: [https://northwestern.zoom.us/j/93980492609](https://northwestern.zoom.us/j/93980492609)
