@@ -28,7 +28,8 @@ For this week's lab, you will complete the tasks specificied in HW3 for the foll
 
 You will know that you are done when all of the `tests/test_posts.py` pass.
 
-<!-- Sarah has made some walkthrough videos to get you started on HW3. Once you go through a few routes on your own, it should get easier! -->
+> ## Video Walkthrough 
+> Sarah has made a <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8650908c-09d7-48a4-b255-ae8300f78475" target="_blank">walkthrough video</a> to help you with Lab 5. Once you go through a few routes on your own, it should get easier!
 
 ## Your Tasks
 Please complete the following tasks by editing your `/views/posts.py` file:
@@ -55,7 +56,7 @@ Please complete the following tasks by editing your `/views/posts.py` file:
             </td>
             <td>
                 <ul>
-                    <li><code class="highlighter-rouge">limit (int, optional)</code>: Limits the number of posts returned (defaults to 10, maximum is 50)</li>
+                    <li><code class="highlighter-rouge">limit (int, optional)</code>: Limits the number of posts returned (defaults to 20, maximum is 50)</li>
                 </ul>
             </td>
             <td>List of Post objects</td>
