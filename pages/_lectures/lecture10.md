@@ -6,9 +6,15 @@ draft: 0
 show_schedule: 1
 num: 10
 due_date: 2022-04-27
-# slides:
-#    - url: ""
-#      title: Design with Accessibility in Mind
+videos: 
+    - url: https://northwestern.zoom.us/rec/share/-6Wlcbn3UlvX5NgVSyfjHlMGWp_jzBO2EOCcnR2NHmSjjtzdzg5YRbHFBClm3tPB.DTMbCT2ueK4DXuY6
+      title: "Recorded Lecture Video"
+      live: 1
+      duration: "52:44"
+
+slides:
+   - url: https://docs.google.com/presentation/d/11w4N9bU6nCHBpFbd2oymqZrgZRCrjjVRz7eWOaHtPmk/edit
+     title: Design with Accessibility in Mind
 readings:
    - url: https://forms.gle/Ph4krdfSyxQqU1aT8?_imcp=1
      title: Pre-Lecture Questionnaire
