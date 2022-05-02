@@ -3,7 +3,7 @@ layout: assignment-two-column
 title: JavaScript Practice
 type: lab
 abbreviation: Lab 6
-draft: 1
+draft: 0
 num: 6
 points: 5
 due_date: 2022-05-06
@@ -49,9 +49,35 @@ We have created a cheatsheet (below) with examples of different selector methods
 
 ## Your Tasks
 
-<a href="/spring2022/course-files/labs/lab05.zip" class="nu-button">Download Lab 5 <i class="fas fa-download"></i></a> 
+<a href="/spring2022/course-files/labs/lab06.zip" class="nu-button">Download Lab 6 <i class="fas fa-download"></i></a> 
 
-Please download the lab05.zip file, unzip it, and move the lab05 folder inside of your webdev-labs folder. Then complete the tasks below.
+Please download the lab05.zip file, unzip it, and move the lab06 folder inside of your webdev-labs folder. Your directory structure should look something like this:
+
+```shell
+webdev-labs
+├── .git
+├── lab01
+│   ├── exercise01
+│   └── exercise02
+├── lab02
+│   ├── .gitignore
+│   ├── Procfile
+│   ├── app.py
+│   ├── helpers
+│   ├── requirements.txt
+│   ├── static
+│   └── templates
+├── lab03
+│   ├── answers.sql
+│   └── photo_app_lab03.tar
+└── lab06
+    ├── 01-font-switcher
+    ├── 02-theme-switcher
+    ├── 03-dyslexia-mode
+    └── style.css
+```
+
+Then complete the tasks below.
 
 ### 1. Font Size Adjuster
 Open font-switcher/index.html in VS Code, and note the HTML tags. Also note that within the header tag there is a script tag that links to your JavaScript file:
@@ -110,20 +136,20 @@ When you're done, your web page should look like this:
 <img class="large frame" src="/spring2022/assets/images/labs/lab05/dyslexia.gif" />
 
 ## What to Turn In
-To submit Lab 5:
+To submit Lab 6:
 
 ### 1. Push all of your files to GitHub
 Please copy the latest version of your files to GitHub by issuing the following commands:
 Please commit and push the latest version of your files to GitHub by issuing the following commands:
 
 ```shell
-git add .    # in case you created any new files
-git commit -m 'Commiting my completed lab05 files'
+git add .    # stages all of your old and new files
+git commit -m 'Commiting my completed lab06 files'
 git status   # to make sure that all of your files are being tracked
 git push     # sends your files to GitHub
 ```
 
 ### 2. Paste a link to your repo on Canvas
-Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for Lab 5.
+Paste a link to your `webdev-labs` GitHub repository into the Canvas textbox for Lab 6.
 
 

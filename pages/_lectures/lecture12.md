@@ -1,24 +1,26 @@
 ---
 layout: module
-title: Client-Side Templating & Fetch
+title: Intro to te JavaScript Language
 type: lecture
-draft: 1
+draft: 0
 show_schedule: 1
 num: 12
 due_date: 2022-05-04
-exercise_url: lecture12.zip
+# exercise_url: lecture12.zip
 readings:
+    - url: https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
+      title: Simplify your JavaScript – Use .map(), .reduce(), and .filter()
     - url: https://www.sitepoint.com/introduction-to-the-fetch-api/
       title: Intro to the Fetch API
-slides: 
-    - url: https://docs.google.com/presentation/d/1aFNEs45mWm9ufS2ua9XpS1xf8D9FQB1esNDOPPy9-Oc/edit?usp=sharing
-      title: "Client-Side Templating & Fetch"
-videos: 
-    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f1522bde-2cc4-470f-bcce-ae3701312ebc
-      title: "Recorded Lecture Video"
-      live: 1
-      duration: "01:17:52"
+# slides: 
+#     - url: ""
+#       title: "Client-Side Templating & Fetch"
+# videos: 
+#     - url: ""
+#       title: "Recorded Lecture Video"
+#       live: 1
+#       duration: "01:17:52"
 
 ---
 
-Today we will be learning how to use the API you made to create client-side templates.
+Today we will examine features of the JavaScript language, practice some different techniques for manipulating data arrays, and explore using the fetch API (if time).
