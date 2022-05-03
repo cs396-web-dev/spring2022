@@ -11,11 +11,11 @@ slides:
     - url: "https://docs.google.com/presentation/d/1mtxVyo2DcqQvfbvu30lIGu4GjZm-x_jmPuApSi032Aw/edit?usp=sharing"
       title: JavaScript Primer
 
-# videos:
-#     - url: ""
-#       title: "Recorded Lecture Video"
-#       live: 1
-#       duration: ""
+videos:
+    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=96aff5ce-8ccb-44d9-b28b-ae8901293f36
+      title: "Recorded Lecture Video"
+      live: 1
+      duration: "47:48"
 
 readings:
     - url: https://www.linkedin.com/learning-login/share?account=75814418&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcollections%2F6893817922595491840%3Ftrk%3Dshare_collection_url%26shareId%3D0NeVKp3mQHa7VVUrYfRxcQ%253D%253D

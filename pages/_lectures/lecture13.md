@@ -16,9 +16,9 @@ slides:
     - url: ""
       title: "Intro to Homework 4"
 
-readings:
-    - url: https://www.sitepoint.com/introduction-to-the-fetch-api/
-      title: Intro to the Fetch API
+# readings:
+#     - url: https://www.sitepoint.com/introduction-to-the-fetch-api/
+#       title: Intro to the Fetch API
 ---
 
 Today we will be reviewing some of the other fetch methods, and then applying our new "fetch technique" to HW4.
