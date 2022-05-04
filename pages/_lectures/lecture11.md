@@ -9,7 +9,7 @@ due_date: 2022-05-02
 exercise_url: lecture11.zip
 slides: 
     - url: "https://docs.google.com/presentation/d/1mtxVyo2DcqQvfbvu30lIGu4GjZm-x_jmPuApSi032Aw/edit?usp=sharing"
-      title: JavaScript Primer
+      title: ntro to Client-Side Web Programming
 
 videos:
     - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=96aff5ce-8ccb-44d9-b28b-ae8901293f36
