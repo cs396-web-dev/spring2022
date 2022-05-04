@@ -15,13 +15,11 @@ readings:
 slides: 
     - url: https://docs.google.com/presentation/d/1RhoSoZWqJBXnNDDpxOeql29V3ZyFezl-Oa86wD0geUg/edit?usp=sharing
       title: "JavaScript Primer"
-    # - url: ""
-    #   title: "Client-Side Templating & Fetch"
-# videos: 
-#     - url: ""
-#       title: "Recorded Lecture Video"
-#       live: 1
-#       duration: "01:17:52"
+videos: 
+    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=402b3068-76dd-4408-b80e-ae8b012829cf
+      title: "Recorded Lecture Video"
+      live: 1
+      duration: "45:46"
 
 ---
 
