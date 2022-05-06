@@ -3,7 +3,7 @@ layout: assignment-two-column
 title: Fetch API Lab
 type: lab
 abbreviation: Lab 7
-draft: 1
+draft: 0
 num: 7
 points: 5
 due_date: 2022-05-13
@@ -22,7 +22,14 @@ due_date: 2022-05-13
     } 
 </style>
 
-In today's lab, your peer mentor will be walking you through how to implement the Follow / Unfollow functionality from [HW04](hw04) (including how to make it accessible). Sarah has also made a <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4825eb60-c251-4263-894a-ae3d014ddac5" target="_blank">video walkthough of Lab 6</a>, if you would like to take a look at one approach to building the interactions. Feel free to code along with the video or do it your own way!
+In today's lab, your peer mentor will be walking you through how to implement the Follow / Unfollow functionality from [HW04](hw04) (including how to make it accessible). Sarah has also made a <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=92d9175e-5bd2-429d-b7db-ae8d0105709b" target="_blank">video walkthough of Lab 7</a>, if you would like to take a look at one approach to building the interactions. This walkthrough was made during the winter quarter (when it was "Lab 6"), but the lab is the same. Feel free to code along with the video or do it your own way! In the lab, the following tasks are covered:
+
+{:.compact}
+1. Making the HTML & CSS for the suggested accounts.
+2. Populating the suggested accounts using the REST API.
+3. Getting the "Follow" button to create a new `following` record using the REST API.
+4. Getting the "Unfollow" button to remove an existing `following` record using the REST API.
+5. Ensuring that the UI is accessible.
 
 ## Your Task
 Before beginning the lab, please complete sections 1 & 2 (Introduction and Set Up) of [HW04](hw04). When you're done, please complete the following tasks:
@@ -111,4 +118,4 @@ Before beginning the lab, please complete sections 1 & 2 (Introduction and Set U
 
 
 ## What to Turn In
-To submit Lab 6, please upload a zip file that contains the HTML, CSS, and JavaScript files that make your follow / unfollow code work. If it's easier, you can just zip and submit your entire `photo-app` directory.
+To submit Lab 7, please upload a zip file that contains the HTML, CSS, and JavaScript files that make your follow / unfollow code work. If it's easier, you can just zip and submit your entire `photo-app` directory (minus your `env` and `git` directories).
