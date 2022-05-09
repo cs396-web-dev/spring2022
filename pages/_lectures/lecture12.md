@@ -1,6 +1,6 @@
 ---
 layout: module
-title: Intro to te JavaScript Language
+title: Intro to the JavaScript Language
 type: lecture
 draft: 0
 show_schedule: 1
