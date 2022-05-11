@@ -10,11 +10,11 @@ slides:
     - url: https://docs.google.com/presentation/d/1OSJFH9q-RVwGIr0lG4Xy2A0PYxlQIGU40HgcCvXZvWc/edit?usp=sharing
       title: "Intro to Homework 4"
 
-# videos:
-#     - url: ""
-#       title: "Recorded Lecture Video"
-#       live: 1
-#       duration: "01:08:56"
+videos:
+    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9a64512b-8c88-4e7c-ab96-ae920128bdfd
+      title: "Recorded Lecture Video"
+      live: 1
+      duration: "50:41"
 due_date: 2022-05-11
 ---
 
