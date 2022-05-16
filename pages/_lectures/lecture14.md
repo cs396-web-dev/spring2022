@@ -7,7 +7,7 @@ show_schedule: 1
 exercise_url: lecture14.zip
 num: 14
 slides:
-    - url: https://docs.google.com/presentation/d/1OSJFH9q-RVwGIr0lG4Xy2A0PYxlQIGU40HgcCvXZvWc/edit?usp=sharing
+    - url: ""
       title: "Intro to Homework 4"
 
 videos:
