@@ -106,10 +106,10 @@ class TestCommentDetailEndpoint(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
 
 
-    def test_comment_delete_invalid_id_format_400(self):
+    def test_comment_delete_invalid_id_format_404(self):
         url = '{0}/api/comments/sdfsdfdsf'.format(root_url)
         response = utils.issue_delete_request(url, user_id=self.current_user.get('id'))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
 
     def test_comment_delete_invalid_id_404(self):
         url = '{0}/api/comments/99999'.format(root_url)
@@ -143,7 +143,7 @@ if __name__ == '__main__':
         # DELETE Tests:
         TestCommentDetailEndpoint('test_comment_delete_valid_200'),
         TestCommentDetailEndpoint('test_comment_delete_jwt_required'),
-        TestCommentDetailEndpoint('test_comment_delete_invalid_id_format_400'),
+        TestCommentDetailEndpoint('test_comment_delete_invalid_id_format_404'),
         TestCommentDetailEndpoint('test_comment_delete_invalid_id_404'),
         TestCommentDetailEndpoint('test_comment_delete_unauthorized_id_404')
         

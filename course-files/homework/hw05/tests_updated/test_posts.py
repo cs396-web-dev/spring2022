@@ -185,11 +185,11 @@ class TestPostDetailEndpoint(unittest.TestCase):
 
         utils.restore_post(post_to_update)
 
-    def test_post_patch_invalid_id_400(self):
+    def test_post_patch_invalid_id_404(self):
         url = '{0}/api/posts/fdsfsdfsdfsdfs'.format(root_url)
         response = utils.issue_patch_request(url, json={}, user_id=self.current_user.get('id'))
-        # print(response.json())
-        self.assertEqual(response.status_code, 400)
+        # print(response.text)
+        self.assertEqual(response.status_code, 404)
 
     def test_post_patch_id_does_not_exist_404(self):
         url = '{0}/api/posts/99999'.format(root_url)
@@ -221,11 +221,11 @@ class TestPostDetailEndpoint(unittest.TestCase):
         response = requests.delete(url)
         self.assertTrue(response.status_code, 401)
 
-    def test_post_delete_invalid_id_400(self):
+    def test_post_delete_invalid_id_404(self):
         url = '{0}/api/posts/sdfsdfdsf'.format(root_url)
         
         response = utils.issue_delete_request(url, user_id=self.current_user.get('id'))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
 
     def test_post_delete_id_does_not_exist_404(self):
         post_with_access = utils.get_post_by_user(self.current_user.get('id'))
@@ -261,12 +261,12 @@ class TestPostDetailEndpoint(unittest.TestCase):
         response = requests.get(url)
         self.assertTrue(response.status_code, 401)
 
-    def test_post_get_invalid_id_400(self):
+    def test_post_get_invalid_id_404(self):
         post_with_access = utils.get_post_by_user(self.current_user.get('id'))
         url = '{0}/api/posts/sdfsdfdsf'.format(root_url, post_with_access.get('id'))
         
         response = utils.issue_get_request(url, user_id=self.current_user.get('id'))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
 
     def test_post_get_id_does_not_exist_404(self):
         post_with_access = utils.get_post_by_user(self.current_user.get('id'))
@@ -308,19 +308,19 @@ if __name__ == '__main__':
         TestPostDetailEndpoint('test_post_patch'),                          # patch (update)
         TestPostDetailEndpoint('test_post_patch_jwt_required'),             # patch (update)
         TestPostDetailEndpoint('test_post_patch_blanks_not_overwritten'),   # patch (update)
-        TestPostDetailEndpoint('test_post_patch_invalid_id_400'),           # patch (update)
+        TestPostDetailEndpoint('test_post_patch_invalid_id_404'),           # patch (update)
         TestPostDetailEndpoint('test_post_patch_id_does_not_exist_404'),    # patch (update)
         TestPostDetailEndpoint('test_post_patch_unauthorized_id_404'),      # patch (update)
         
         TestPostDetailEndpoint('test_post_delete'),                         # delete
         TestPostDetailEndpoint('test_post_delete_jwt_required'),
-        TestPostDetailEndpoint('test_post_delete_invalid_id_400'),          # delete
+        TestPostDetailEndpoint('test_post_delete_invalid_id_404'),          # delete
         TestPostDetailEndpoint('test_post_delete_id_does_not_exist_404'),   # delete
         TestPostDetailEndpoint('test_post_delete_unauthorized_id_404'),     # delete
 
         TestPostDetailEndpoint('test_post_get'),                            # get (individual)
         TestPostDetailEndpoint('test_post_get_jwt_required'),
-        TestPostDetailEndpoint('test_post_get_invalid_id_400'),             # get (individual) 
+        TestPostDetailEndpoint('test_post_get_invalid_id_404'),             # get (individual) 
         TestPostDetailEndpoint('test_post_get_id_does_not_exist_404'),      # get (individual)
         TestPostDetailEndpoint('test_post_get_unauthorized_id_404')         # get (individual)
     ])

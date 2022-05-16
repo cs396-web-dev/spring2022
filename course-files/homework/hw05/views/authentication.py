@@ -1,22 +1,39 @@
-from flask import (
-    request, make_response, render_template, redirect
-)
+from flask import request, \
+    make_response, render_template, redirect
 from models import User
 import flask_jwt_extended
 
 def logout():
-    # hint:  https://dev.to/totally_chase/python-using-jwt-in-cookies-with-a-flask-app-and-restful-api-2p75
-    return 'Implement Logout functionality'
+    response = make_response(redirect('/login', 302))
+    flask_jwt_extended.unset_jwt_cookies(response)
+    return response
 
 def login():
     if request.method == 'POST':
-        # authenticate user here. If the user sent valid credentials, set the
-        # JWT cookies:
-        # https://flask-jwt-extended.readthedocs.io/en/3.0.0_release/tokens_in_cookies/
-        return render_template(
-            'login.html', 
-            message='Invalid password'
-        )
+        print(request.form)
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = User.query.filter_by(username=username).first()
+        print(user, username)
+        if user is None:
+            # the user was not found on the database
+            return render_template(
+                'login.html', 
+                message='Invalid username'
+            )
+        
+        if user.check_password(password):
+            # create a new token with the user id inside
+            access_token = flask_jwt_extended.create_access_token(identity=user.id)
+            resp = make_response(redirect('/', 302))
+            # resp = make_response('Hello world!')
+            flask_jwt_extended.set_access_cookies(resp, access_token)
+            return resp
+        else:
+            return render_template(
+                'login.html', 
+                message='Invalid password'
+            )
     else:
         return render_template(
             'login.html'

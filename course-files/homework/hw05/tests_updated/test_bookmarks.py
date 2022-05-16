@@ -121,17 +121,17 @@ class TestBookmarkDetailEndpoint(unittest.TestCase):
         url = '{0}/api/bookmarks/{1}'.format(root_url, bookmark_id)
         
         response = utils.issue_delete_request(url, user_id=self.current_user.get('id'))
-        print(response.text)
+        # print(response.text)
         self.assertEqual(response.status_code, 200)
 
         # restore the post in the database:
         utils.restore_bookmark(bookmark_to_delete)
 
 
-    def test_bookmark_delete_invalid_id_format_400(self):
+    def test_bookmark_delete_invalid_id_format_404(self):
         url = '{0}/api/bookmarks/sdfsdfdsf'.format(root_url)
         response = utils.issue_delete_request(url, user_id=self.current_user.get('id'))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
         
     
     def test_bookmark_delete_invalid_id_404(self):
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
         # DELETE Tests
         TestBookmarkDetailEndpoint('test_bookmark_delete_valid_200'),
-        TestBookmarkDetailEndpoint('test_bookmark_delete_invalid_id_format_400'),
+        TestBookmarkDetailEndpoint('test_bookmark_delete_invalid_id_format_404'),
         TestBookmarkDetailEndpoint('test_bookmark_delete_invalid_id_404'),
         TestBookmarkDetailEndpoint('test_bookmark_delete_unauthorized_id_404'),   
         TestBookmarkDetailEndpoint('test_bookmarks_delete_jwt_required') 

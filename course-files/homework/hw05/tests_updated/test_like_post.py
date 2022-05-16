@@ -12,8 +12,10 @@ class TestLikePostListEndpoint(unittest.TestCase):
 
     def test_like_post_valid_request_201(self):
         post_id = utils.get_unliked_post_id_by_user(self.current_user.get('id'))
-        url = '{0}/api/posts/{1}/likes'.format(root_url, post_id)
-        response = utils.issue_post_request(url, json={}, user_id=self.current_user.get('id'))
+        url = '{0}/api/posts/likes'.format(root_url)
+        response = utils.issue_post_request(url, json={
+            'post_id': post_id
+        }, user_id=self.current_user.get('id'))
         # print(response.text)
         self.assertEqual(response.status_code, 201)
         new_like = response.json()
@@ -40,14 +42,12 @@ class TestLikePostListEndpoint(unittest.TestCase):
 
     def test_like_post_no_duplicates_400(self):
         liked_post = utils.get_liked_post_by_user(self.current_user.get('id'))
-        url = '{0}/api/posts/{1}/likes'.format(root_url, liked_post.get('post_id'))
-        response = utils.issue_post_request(url, json={}, user_id=self.current_user.get('id'))
+        # print(liked_post)
+        url = '{0}/api/posts/likes'.format(root_url)
+        response = utils.issue_post_request(url, json={
+            'post_id': liked_post.get('post_id')
+        }, user_id=self.current_user.get('id'))
         # print(liked_post.get('post_id'))
-        # print(response.text)
-        self.assertEqual(response.status_code, 400)
-
-    def test_like_post_invalid_post_id_format_400(self):
-        response = utils.issue_post_request(root_url + '/api/posts/dasdasdasd/likes', json={}, user_id=self.current_user.get('id'))
         # print(response.text)
         self.assertEqual(response.status_code, 400)
 
@@ -72,9 +72,8 @@ class TestLikePostDetailEndpoint(unittest.TestCase):
 
     def test_like_post_delete_valid_200(self):
         liked_post = utils.get_liked_post_by_user(self.current_user.get('id'))
-        url = '{0}/api/posts/{1}/likes/{2}'.format(
+        url = '{0}/api/posts/likes/{1}'.format(
             root_url, 
-            liked_post.get('post_id'), 
             liked_post.get('id')
         )
         # print(url)
@@ -96,7 +95,7 @@ class TestLikePostDetailEndpoint(unittest.TestCase):
         response = requests.delete(url)
         self.assertTrue(response.status_code, 401)
 
-    def test_like_post_delete_invalid_id_format_400(self):
+    def test_like_post_delete_invalid_id_format_404(self):
         liked_post = utils.get_liked_post_by_user(self.current_user.get('id'))
         url = '{0}/api/posts/{1}/likes/{2}'.format(
             root_url, 
@@ -104,7 +103,7 @@ class TestLikePostDetailEndpoint(unittest.TestCase):
             'sdfsdfdsf'
         )
         response = utils.issue_delete_request(url, user_id=self.current_user.get('id'))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
         
     
     def test_like_post_delete_invalid_id_404(self):
@@ -141,14 +140,13 @@ if __name__ == '__main__':
         TestLikePostListEndpoint('test_like_post_valid_request_201'),
         TestLikePostListEndpoint('test_like_post_jwt_required'),
         TestLikePostListEndpoint('test_like_post_no_duplicates_400'),
-        TestLikePostListEndpoint('test_like_post_invalid_post_id_format_400'),
         TestLikePostListEndpoint('test_like_post_invalid_post_id_404'),
         TestLikePostListEndpoint('test_like_post_unauthorized_post_id_404'),
 
-        # # DELETE Tests:
+        # DELETE Tests:
         TestLikePostDetailEndpoint('test_like_post_delete_valid_200'),
         TestLikePostDetailEndpoint('test_like_post_delete_jwt_required'),
-        TestLikePostDetailEndpoint('test_like_post_delete_invalid_id_format_400'),
+        TestLikePostDetailEndpoint('test_like_post_delete_invalid_id_format_404'),
         TestLikePostDetailEndpoint('test_like_post_delete_invalid_id_404'),
         TestLikePostDetailEndpoint('test_like_post_delete_unauthorized_id_404'),    
     ])
