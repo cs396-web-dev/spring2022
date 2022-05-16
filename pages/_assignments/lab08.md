@@ -35,7 +35,7 @@ Implement the `/login` POST endpoint by editing `views/authentication.py`.
 
 
 ## What to Turn In
-To submit Lab 7, please upload a zip file that has three files in it:
+To submit Lab 8, please upload a zip file that has three files in it:
 
 {:.compact}
 * `views/authentication.py`
