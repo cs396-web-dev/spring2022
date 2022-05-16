@@ -17,15 +17,12 @@ readings:
       title: Understanding JWT and how to implement a simple JWT with Flask
     - url: https://flask-jwt-extended.readthedocs.io/en/stable/
       title: Flask-JWT-Extended’s Documentation
-# videos:
-#     - url: ""
-#       title: "Recorded Lecture Video 1 (forgot to record screen)"
-#       live: 1
-#       duration: "31:23"
-#     - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=da116ff8-5cfb-4e99-bddf-ae43013a3ac0
-#       title: "Recorded Lecture Video 2 (with screen recording)"
-#       live: 1
-#       duration: "40:17"
+videos:
+    - url: https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3f69f1e1-fe7b-4a88-a9a4-ae97012810aa
+      title: "Recorded Lecture Video 1"
+      live: 1
+      duration: "50:22"
+
 ---
 
 Today we will be going over authentication and JSON Web Tokens.
