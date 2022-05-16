@@ -23,4 +23,5 @@ course-files/**/results/*.json
 course-files/**/results/*.html
 my_token.py
 spider.sqlite
-.env
+#.env
+env

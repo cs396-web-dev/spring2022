@@ -1,0 +1,9 @@
+requests                # for testing
+dnspython               # support for connecting to remote MongoDB
+python-dotenv           # support for environment variables
+Flask
+Flask-Cors
+Flask-RESTful
+Flask-JWT-Extended      # NEW!
+
+pylint-django           # linter help
