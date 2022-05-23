@@ -1,8 +1,8 @@
 '''
 To test: python3 -m websockets ws://localhost:8081/
 Then paste one of the following messages:
-    * { "type": "login", "username": "walter" }
-    * { "type": "disconnect" }
+    * { "type": "login", "user_joined": "walter", "active_users": ["walter", "maria", "laura"] }
+    * { "type": "disconnect", user_left: "walter", "active_users": ["maria", "laura"] }
     * { "type": "chat", "text": "Hello world!", "username": "walter" }
     * { "type": "invalid", "text": "this is an invalid message" }
     
@@ -47,8 +47,8 @@ async def respond_to_message(websocket, message):
        back to the clients:
            {
                "type": "login",
-               "users": list(logged_in_users.values()),
-               "user_joined": data
+               "active_users": list(logged_in_users.values()),
+               "user_joined": data.get("username")
            }
        HINT:  Use the following code to REMOVE a tracked user/socket 
        from the server's memory:
@@ -59,8 +59,8 @@ async def respond_to_message(websocket, message):
        back to the clients:
            {
                "type": "disconnect",
-               "users": list(logged_in_users.values()),
-               "user_left": data
+               "active_users": list(logged_in_users.values()),
+               "user_left": data.get("username")
            }
        
        HINT:  Use the following code to REMOVE a tracked user/socket 
@@ -86,7 +86,6 @@ async def respond_to_message(websocket, message):
         # TODO: replace "data" with a message that conforms to
         # the specs above:
         await sock.send(json.dumps(data))
-
 
 
 async def broadcast_messages(websocket, path):

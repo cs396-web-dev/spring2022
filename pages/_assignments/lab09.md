@@ -10,12 +10,16 @@ due_date: 2022-05-27
 description: |
     Create a basic chat app using WebSockets
 ---
-**Credits & Kudos**: Cooper Barth wrote this lab, and Sarah adapted it to work with Python.
+**Credits & Kudos**: 
+
+{:.compact}
+* Cooper Barth wrote the original WebSockets lab using Node.js
+* Victoria Chávez designed the accessibility features
+* Sarah adapted it to work with Python
 
 > ## Updates
 > If you can't get your local chat server working, use the course chat server, which can be accessed here: <a href="wss://chat-server-cs396.herokuapp.com/">wss://chat-server-cs396.herokuapp.com</a>
 
-<a class="nu-button" style="margin-top:20px;display:inline-block;" href="/spring2022/course-files/labs/lab08.zip">lab08.zip<i class="fas fa-download" aria-hidden="true"></i></a>
 
 {:.blockquote-no-margin}
 > ## Background Readings
@@ -31,11 +35,11 @@ However, there are examples in which it may be useful for the server to send dat
 <table style="border-width:0px;">
     <tr>
         <td>
-            <img class="large frame" src="/spring2022/assets/images/labs/lab08/img1.png" />
+            <img class="large frame" src="/spring2022/assets/images/labs/lab09/img1.png" />
             <p>HTTP Protocol (http:// or https://)</p>
         </td>
         <td>
-            <img class="large frame" src="/spring2022/assets/images/labs/lab08/img2.png" />
+            <img class="large frame" src="/spring2022/assets/images/labs/lab09/img2.png" />
             <p>Web Socket Protocol (ws:// or wss://)</p> 
         </td>
     </tr>
@@ -49,13 +53,58 @@ Today, you will building a messaging app using WebSockets. This requires two com
 
 Note that the server and the client don't have to be on the same machine (and furthermore the client doesn't even have to be hosted in the cloud)!
 
-## 1. Implement the Server Functionality
+## 1. Setup Your Files and Local Server
 
-Download `lab08.zip`, unzip it, and open the folder in VSCode.
+<a class="nu-button" style="margin-top:20px;display:inline-block;" href="/spring2022/course-files/labs/lab09.zip">lab09.zip<i class="fas fa-download" aria-hidden="true"></i></a>
 
-From your command line, navigate to the `lab08/server` directory and install the required packages with `pip3 install -r requirements.txt` (or however you've been doing this all quarter). Then run the server locally using `python3 app.py`. 
+### 1. Organize files
+1. Download the `lab09.zip` file and unzip it. You should see the following files:
 
-Open `app.py` in VS Code and take a look at it. A few things to note:
+```bash
+lab09
+├── client
+│   ├── client.js
+│   ├── index.css
+│   └── index.html
+└── server
+    ├── .env
+    ├── Procfile
+    ├── app.py
+    └── requirements.txt
+```
+
+### 2. Set Up Your Virtual Environment
+Open the terminal and navigate to the `server` directory inside your `lab09` directory. Then, set up a virtual environment and install the dependencies as follows (depending on your operating system):
+
+#### For Mac, Unix, Linux, or GitBash
+
+```bash
+python3 -m venv env
+source env/bin/activate
+python -m pip install -r requirements.txt    # install dependencies
+```
+
+#### For Windows Powershell or Command Prompt
+
+```bash
+# create the virtual environment
+py -m venv env  
+
+# run the activate.bat script as follows:
+env\Scripts\activate
+
+# and finally, install the Python dependencies
+py -m pip install -r requirements.txt
+```
+
+### 3. Run Your Server
+Note that this IS NOT a Flask server. Hence, please run the server as a regular python file (with your virtual environment activated):
+
+`python app.py`
+
+## 2. Implement the Server Functionality
+
+Before implementing anything, take stock of the code. First, open `server/app.py` in VS Code and take a look at it. A few things to note:
 * This server isn't using flask. Rather, it's using the `websockets` third-party library to listen for websocket requests.
 * The `respond_to_message` function naively echos a message back to the originating client.
 * The server doesn't keep track of all of the websockets that are connected to it. Therefore, it does not know how to broadcast a user's message to all of the other socket connections.
@@ -69,8 +118,8 @@ async def respond_to_message(websocket, message):
 
 Your job is to edit the `app.py` code to handle the three different types of JSON messages shown below. These data formats are abitrary -- we just made them up as reasonable ways to send login, disconnect, and chat information. You could set these messages up however you want, but we just made some decisions here about how to do things:
 
-1. **Login**: `{ "type": "login", "username": "my_username" }`
-1. **Disconnect**: `{ "type": "disconnect", "username": "my_username" }`
+1. **Login**: `{ "type": "login", "user_joined": "walter", "active_users": ["walter", "maria", "laura"] }`
+1. **Disconnect**: `{ "type": "login", "user_left": "walter", "active_users": ["maria", "laura"] }`
 1. **Chat**: `{ "type": "chat", "text": "is this working?", "username": "my_username" }`
 
 You will handle each of these messages according to the specifications outlined below:
@@ -87,11 +136,12 @@ Then, send the following message back to each client:
 ```python
 {
     "type": "login",
-    "users": list(logged_in_users.values())
+    "user_joined": data.get('username'),
+    "active_users": list(logged_in_users.values())
 }
 ```
 
-You can test this by opening `lab08/client/index.html` in your web browser, clicking the "Connect" and "Set Name" buttons (and also providing a username), and seeing if you get the correct JSON output in the browser console.
+You can test this by opening `lab09/client/index.html` in your web browser, clicking the "Connect" and "Set Name" buttons (and also providing a username), and seeing if you get the correct JSON output in the browser console.
 
 ### 2. Disconnect
 If the `data.type` is "disconnect", removed the user from the logged_in_users dictionary. 
@@ -105,11 +155,12 @@ Then, send the following message back to each client:
 ```python
 {
     "type": "disconnect",
-    "users": list(logged_in_users.values())
+    "user_left": data.get('username'),
+    "active_users": list(logged_in_users.values())
 }
 ```
 
-You can test this by opening `lab08/client/index.html` in a second browser tab and clicking the "Connect" and "Set Name" buttons (and also providing a username). Then, close the browser tab you just opened. Now go back to your first browser tab and look at the console. You should see a messages in the console indicating that a user both connected and then disconnected from the chat server.
+You can test this by opening `lab09/client/index.html` in a second browser tab and clicking the "Connect" and "Set Name" buttons (and also providing a username). Then, close the browser tab you just opened. Now go back to your first browser tab and look at the console. You should see a messages in the console indicating that a user both connected and then disconnected from the chat server.
 
 ### 3. Chat
 If the `data.get('type')` is "chat", just send the `data` object to each client (no processing needed). You can test this by sending a chat message in the client and then seeing if you get the correct JSON output in the browser console.
@@ -129,7 +180,7 @@ for sock in logged_in_users:
 > ### Note
 > If we were building this into a full application, we would (probably) store each user, conversation, and message in a database to load the appropriate chat history whenever the user opens the application. For now, messages will just be stored on the client and not be persisted between sessions (perhaps a privacy feature?).
 
-## 2. Implement the Client Functionality
+## 3. Implement the Client Functionality
 
 Open `index.html` in your browser. The interface is a simple chat interface that allows the user to select a chatroom (just localhost for now), set their name, and send messages to other users in the chatroom. 
 
@@ -142,16 +193,28 @@ Now open `client.js` in VS Code and take a look at it. Much of this (simple) cli
 **Your job** will be to implement the `connection.onmessage` event handler, which will update the UI whenever the client receives a message from the server. You will handle server messages according to the specifications outlined below:
 
 ### 1. Login or Disconnect
-If the data.type is "login" or "disconnent", display the list of logged in users in the #users-list div (right-hand panel).
+If the data.type is "login" or "disconnect", display the list of logged in users in the #users-list div (right-hand panel).
 
 ### 2. Chat
 If data.type is "chat", append the chat message to the #chat div (main panel) with the sender's name and message. Use the "left" and "right" classes to differentiate the current user from all the other users.
 
 If your client and server are both working, you should be able to open `index.html` in two separate browser tabs, log in to the same server on each, and send messages between them (se video below)!
 
-<img class="large frame" style="width:100%;" src="/spring2022/assets/images/labs/lab08/lab-8-demo.gif" />
+<img class="large frame" style="width:100%;" src="/spring2022/assets/images/labs/lab09/lab-8-demo.gif" />
 
-## 3. (Optional) Deploy with ngrok
+## 4. Accessibility
+It is important to think about how low-vision or blind users might interact with a chat app. Specifically:
+
+1. New chat messages are inserted into the DOM anytime another user sends a message.
+2. New users are coming and going all of the time.
+
+Given this, please ensure that all of the regions that are updated when websocket messages are received use the `aria-live` and `role` attributes. <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" target="_blank">Read more on live regions here</a>. Please test this using a screen reader:
+
+* TBD: Mac Instructions
+* TBD: Windows Instructions
+
+
+## 5. (Optional) Experiment with ngrok
 
 Ngrok is a command line tool for creating a secure URL that points to server that is running on your local computer. Using this url, others can access your server securely without you having to host it online.
 
@@ -159,11 +222,11 @@ You should [sign up](https://dashboard.ngrok.com/signup) for ngrok using your No
 
 Run `ngrok help`; if the command fails, find the location where the ngrok executable was downloaded to and add the folder to your system PATH. Then, run `ngrok authtoken <token>` with the token listed in your ngrok dashboard.
 
-<img class="large frame" src="/spring2022/assets/images/labs/lab08/img3.png" />
+<img class="large frame" src="/spring2022/assets/images/labs/lab09/img3.png" />
 
 With your server running in another terminal window, type `ngrok http 8081` to open a tunnel to your server. You should now be able to add the forwarding url (minus the http://) to the list of servers on your client and use it as a separate chat room.
 
-If you want, feel free to send the link to any open tunnels to your app in the Zoom chat so others can connect to it with their clients. Ideally, we'll be able to create several open chatrooms that your classmates can use!
+<!-- If you want, feel free to send the link to any open tunnels to your app in the Zoom chat so others can connect to it with their clients. Ideally, we'll be able to create several open chatrooms that your classmates can use! -->
 
 ## What to Turn In
 
