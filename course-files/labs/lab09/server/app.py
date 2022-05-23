@@ -18,7 +18,7 @@ import os
 
 logged_in_users = dict()
 
-PORT = os.environ.get('WS_PORT') or 8081
+PORT = os.environ.get('PORT') or os.environ.get('WS_PORT') or 8081
 
 async def respond_to_message(websocket, message):
     try:
