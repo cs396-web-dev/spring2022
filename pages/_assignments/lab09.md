@@ -214,12 +214,18 @@ If your client and server are both working, you should be able to open `index.ht
 ## 4. Accessibility
 It is important to think about how low-vision or blind users might interact with a chat app. Specifically:
 
+{:.compact}
 1. New chat messages are inserted into the DOM anytime another user sends a message.
 2. New users are coming and going all of the time.
 
 Given this, please ensure that all of the regions that are updated when websocket messages are received use the `aria-live` and `role` attributes. <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" target="_blank">Read more on live regions here</a>. 
 
 Both Apple and Windows machines have a pre-installed screenreader. Use VoiceOver on Mac or Narrator on Windows to test the behavior described above (see instructions below).
+
+### Screen Reader Demo
+Here is an example of how a screen reader might interact with your chat interface (turn on the volume):
+
+<iframe src="https://northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=4df0a27a-6133-43ab-82cb-aea000f51bcd&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 ### Mac VoiceOver Instructions
 #### Turn on VoiceOver
