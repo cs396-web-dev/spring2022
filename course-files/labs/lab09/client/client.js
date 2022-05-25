@@ -34,7 +34,7 @@ const initializeConnection = ev => {
 };
 
 /********************************************************/
-/* 2. Helper Functions that send messages to the server */
+/* 2. Helper functions that send messages to the server */
 /********************************************************/
 const notify = {
     sendChat: () => {
@@ -48,10 +48,10 @@ const notify = {
         }
     },
 
-    sendChatFromEnter: ev => {
+    triggerFromEnter: (ev, callback) => {
         if (ev.keyCode === 13) {
             ev.preventDefault();
-            notify.sendChat();
+            callback(ev);
         }
     },
 
@@ -85,8 +85,30 @@ const notify = {
     }
 }
 
+/************************************************/
+/* 3. Event handlers that listen for DOM events */
+/************************************************/
+qs('#connect').addEventListener('click', initializeConnection);
+qs("#set-name").addEventListener("click", notify.login);
+qs('#send').addEventListener('click', notify.sendChat);
+qs("#server").addEventListener('keyup', ev => {
+    notify.triggerFromEnter(ev, initializeConnection);
+});
+qs("#name").addEventListener('keyup', ev => {
+    notify.triggerFromEnter(ev, notify.login);
+});
+qs("#message").addEventListener('keyup', ev => {
+    notify.triggerFromEnter(ev, notify.sendChat);
+});
+
+// logout when the user closes the tab:
+window.addEventListener('beforeunload', notify.logout);
+
+// load with cursor on the server textbox:
+qs("#server").focus();
+
 /******************************************************/
-/* 3. Helper Functions that hide and show UI elements */
+/* 4. Helper Functions that hide and show UI elements */
 /******************************************************/
 const utils = {
     resetApp: () => {
@@ -101,6 +123,7 @@ const utils = {
         utils.hideElements(['#step1']);
         utils.showElements(['#step2', '#ws-status']);
         qs("#ws-status").textContent = "Connected";
+        qs("#name").focus();
     },
 
     showChatInterface: () => {
@@ -108,6 +131,7 @@ const utils = {
         utils.hideElements(['#step2']);
         utils.showElements(
             ['#name-display', '#chat-container', '#send-container', '#status']);
+        qs("#message").focus();
     },
 
     showElements: elements => {
@@ -122,19 +146,9 @@ const utils = {
     }
 };
 
-/*****************************************
- * 5. Attaching Event Handlers to the DOM
- *****************************************/
-qs('#connect').addEventListener('click', initializeConnection);
-qs("#set-name").addEventListener("click", notify.login);
-qs('#send').addEventListener('click', notify.sendChat);
-qs("#message").addEventListener('keyup', notify.sendChatFromEnter);
-// logout when the user closes the tab:
-window.addEventListener('beforeunload', notify.logout);
-
 
 /********************
- * 6. Your Code Here
+ * 5. Your Code Here
  ********************/
 const handleServerMessage = ev => {
     const data = JSON.parse(ev.data);

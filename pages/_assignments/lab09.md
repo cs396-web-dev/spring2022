@@ -3,7 +3,7 @@ layout: assignment-two-column
 title: Mini Chat App
 type: lab
 abbreviation: Lab 9
-draft: 1
+draft: 0
 num: 9
 points: 5
 due_date: 2022-05-27
@@ -98,9 +98,10 @@ py -m pip install -r requirements.txt
 ```
 
 ### 3. Run Your Server
-Note that this IS NOT a Flask server. Hence, please run the server as a regular python file (with your virtual environment activated):
+Note that this IS **NOT** a Flask server. Given this:
 
-`python app.py`
+1. You will  run the server as a regular python file (with your virtual environment activated):<br>`python app.py`
+1. Each time you make a change to `app.py` you will have to **restart the server**.
 
 ## 2. Implement the Server Functionality
 
@@ -177,8 +178,10 @@ for sock in logged_in_users:
     await sock.send(json.dumps(data))
 ```
 
-> ### Note
+> ### Some notes on extending this exercise
 > If we were building this into a full application, we would (probably) store each user, conversation, and message in a database to load the appropriate chat history whenever the user opens the application. For now, messages will just be stored on the client and not be persisted between sessions (perhaps a privacy feature?).
+>
+> We would also probably require that the user authenticates using a JWT token, and that a user could only broadcast messages to people with reciprocal following relationships (you follow me and I follow you). 
 
 ## 3. Implement the Client Functionality
 
@@ -186,17 +189,20 @@ Open `index.html` in your browser. The interface is a simple chat interface that
 
 Now open `client.js` in VS Code and take a look at it. Much of this (simple) client has already been implemented for you, including:
 
-* Initializing the connection when the user clicks the "Connect" button
-* Logging the user in when the user clicks the "Set Name" button
-* Sending messages to the server when the user clicks the "Send" button
+{:.compact}
+1. Code for setting up the web socket + socket event listeners (when the user clicks the "Connect" button).
+1. Code for sending messages to the server (responding to UI events).
+1. Code for listening for and responding to (some) DOM events.
+1. Code for handling UI changes (i.e., showing and hiding DOM elements).
+1. An event handler (function) stub called `handleServerMessage` that you will implement.
 
-**Your job** will be to implement the `connection.onmessage` event handler, which will update the UI whenever the client receives a message from the server. You will handle server messages according to the specifications outlined below:
+**Your job** will be to implement the `handleServerMessage` event handler, which will update the UI whenever the client receives a message from the server. You will handle server messages according to the specifications outlined below:
 
 ### 1. Login or Disconnect
-If the data.type is "login" or "disconnect", display the list of logged in users in the #users-list div (right-hand panel).
+If the data.type is "login" or "disconnect", display the list of logged in users in the `#users-list` div (right-hand panel).
 
 ### 2. Chat
-If data.type is "chat", append the chat message to the #chat div (main panel) with the sender's name and message. Use the "left" and "right" classes to differentiate the current user from all the other users.
+If data.type is "chat", append the chat message to the `#chat` div (main panel) with the sender's name and message. Use the "left" and "right" classes to differentiate the current user from all the other users.
 
 If your client and server are both working, you should be able to open `index.html` in two separate browser tabs, log in to the same server on each, and send messages between them (see video below)!
 
@@ -210,7 +216,7 @@ It is important to think about how low-vision or blind users might interact with
 
 Given this, please ensure that all of the regions that are updated when websocket messages are received use the `aria-live` and `role` attributes. <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" target="_blank">Read more on live regions here</a>. 
 
-Both Apple and Windows machines bring a pre-installed screenreader. Use VoiceOver on Mac or Narrator on Windows to test the behavior described above (see instructions below).
+Both Apple and Windows machines have a pre-installed screenreader. Use VoiceOver on Mac or Narrator on Windows to test the behavior described above (see instructions below).
 
 ### Mac VoiceOver Instructions
 #### Turn on VoiceOver
