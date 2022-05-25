@@ -27,6 +27,9 @@ description: |
 > * <a href="https://www.ably.io/topic/websockets" target="_blank">A conceptual overview of WebSockets</a> (a longer, more detailed overview)
 > * <a href="https://websockets.readthedocs.io/en/latest/index.html" target="_blank">The websockets library (Python)</a>
 > * <a href="https://www.youtube.com/watch?v=SfQd1FdcTlI" target="_blank">Demo using websockets and Python</a>
+> * <a href="https://timwright.org/blog/2017/02/18/using-aria-live-regions/" target="_blank">Using Aria Live Regions</a>
+> * <a href="https://gaurav5430.medium.com/quick-accessibility-wins-multiple-aria-live-on-single-action-caveat-b79a6f41e7cc" target="_blank">Assertive clears queue</a>
+> * <a href="https://github.com/w3c/aria/issues/1689" target="_blank">Mac Screenreader bugs</a>
 
 Until now, we've been using the HTTP protocol to send messages between a user's client at the server. Using HTTP, clients must initiate individual connections to the server in order to request and receive data.
 

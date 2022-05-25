@@ -1,10 +1,9 @@
 '''
 To test: python3 -m websockets ws://localhost:8081/
 Then paste one of the following messages:
-    * { "type": "login", "user_joined": "walter", "active_users": ["walter", "maria", "laura"] }
-    * { "type": "disconnect", user_left: "walter", "active_users": ["maria", "laura"] }
+    * { "type": "login", "username": "walter" }
+    * { "type": "disconnect" }
     * { "type": "chat", "text": "Hello world!", "username": "walter" }
-    * { "type": "invalid", "text": "this is an invalid message" }
     
 '''
 
