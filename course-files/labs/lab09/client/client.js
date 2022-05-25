@@ -1,10 +1,12 @@
 const ws = window.WebSocket || window.MozWebSocket;
-
 // shortcut:
 const qs = document.querySelector.bind(document);
 let connection;
 let username = "";
-    
+
+/********************************************************/
+/* 1. Settng up the web socket + socket event listeners */
+/********************************************************/
 const initializeConnection = ev => {
     const url = qs('#server').value;
     connection = new ws(url);
@@ -22,38 +24,20 @@ const initializeConnection = ev => {
         alert('Socket server disconnected!');
     };
     
-    connection.onerror = e => {
+    connection.onerror = ev => {
         // fires when the server indicates a websocket error
-        console.error("WebSocket error observed:", e);
+        console.error("WebSocket error observed:", ev);
     };
     
-    
-    connection.onmessage = e => {
-        const data = JSON.parse(e.data);
-        console.log(data);
-
-        /***********************************************************
-         * Client-Side Logic: Your Job 
-         ***********************************************************
-         * Respond to the messages that are sent back to the server:
-         * 
-         *   1. If the data.type is "login" or "disconnent", 
-         *      display the list of logged in users in the 
-         *      #users-list div (right-hand panel).
-         * 
-         *   2. If data.type is "chat", append the chat message 
-         *      to the #chat div (main panel).
-         ************************************************************/
-
-    };
+    // this is what you will be implementing (see below)
+    connection.onmessage = handleServerMessage;
 };
 
-
-// code that sends messages to the server:
+/********************************************************/
+/* 2. Helper Functions that send messages to the server */
+/********************************************************/
 const notify = {
     sendChat: () => {
-        // take what your user typed into the message textbox
-        // and send it to the server:
         if (qs("#message").value !== "") {
             connection.send(JSON.stringify({
                 type: "chat",
@@ -61,6 +45,13 @@ const notify = {
                 username: username
             }));
             qs("#message").value = "";
+        }
+    },
+
+    sendChatFromEnter: ev => {
+        if (ev.keyCode === 13) {
+            ev.preventDefault();
+            notify.sendChat();
         }
     },
 
@@ -75,7 +66,6 @@ const notify = {
     },
 
     login: () => {
-        // login to the server with the username typed into the chat:
         username = qs("#name").value;
         if (!username) {
             return;
@@ -93,8 +83,11 @@ const notify = {
         // update UI:
         utils.showChatInterface();
     }
-};
+}
 
+/******************************************************/
+/* 3. Helper Functions that hide and show UI elements */
+/******************************************************/
 const utils = {
     resetApp: () => {
         connection = null;
@@ -129,9 +122,33 @@ const utils = {
     }
 };
 
-
+/*****************************************
+ * 5. Attaching Event Handlers to the DOM
+ *****************************************/
 qs('#connect').addEventListener('click', initializeConnection);
 qs("#set-name").addEventListener("click", notify.login);
 qs('#send').addEventListener('click', notify.sendChat);
+qs("#message").addEventListener('keyup', notify.sendChatFromEnter);
 // logout when the user closes the tab:
 window.addEventListener('beforeunload', notify.logout);
+
+
+/********************
+ * 6. Your Code Here
+ ********************/
+const handleServerMessage = ev => {
+    const data = JSON.parse(ev.data);
+    if (data.type === "login") {
+        console.log('A user has just connected:');
+        console.log(data);
+    } else if (data.type === "disconnect") {
+        console.log('A user has just disconnected:');
+        console.log(data);
+    } else if (data.type === "chat") {
+        console.log('A user has just sent a chat message:');
+        console.log(data);
+    } else {
+        console.error("Message type not recognized.");
+        console.log(data);
+    }
+};
