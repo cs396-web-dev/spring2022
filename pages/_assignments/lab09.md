@@ -198,7 +198,7 @@ If the data.type is "login" or "disconnect", display the list of logged in users
 ### 2. Chat
 If data.type is "chat", append the chat message to the #chat div (main panel) with the sender's name and message. Use the "left" and "right" classes to differentiate the current user from all the other users.
 
-If your client and server are both working, you should be able to open `index.html` in two separate browser tabs, log in to the same server on each, and send messages between them (se video below)!
+If your client and server are both working, you should be able to open `index.html` in two separate browser tabs, log in to the same server on each, and send messages between them (see video below)!
 
 <img class="large frame" style="width:100%;" src="/spring2022/assets/images/labs/lab09/lab-8-demo.gif" />
 
@@ -208,10 +208,26 @@ It is important to think about how low-vision or blind users might interact with
 1. New chat messages are inserted into the DOM anytime another user sends a message.
 2. New users are coming and going all of the time.
 
-Given this, please ensure that all of the regions that are updated when websocket messages are received use the `aria-live` and `role` attributes. <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" target="_blank">Read more on live regions here</a>. Please test this using a screen reader:
+Given this, please ensure that all of the regions that are updated when websocket messages are received use the `aria-live` and `role` attributes. <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" target="_blank">Read more on live regions here</a>. 
 
-* TBD: Mac Instructions
-* TBD: Windows Instructions
+Both Apple and Windows machines bring a pre-installed screenreader. Use VoiceOver on Mac or Narrator on Windows to test the behavior described above (see instructions below).
+
+### Mac VoiceOver Instructions
+#### Turn on VoiceOver
+Open System Preferences, go to Accessibility, and enable VoiceOver
+<img class="large frame" style="width:100%;" alt= "animated image of the instructions described above" src="/spring2022/assets/images/labs/lab09/mac-voiceover-open.gif" />
+#### Turn off VoiceOver
+Click the X on the top left of the gray VoiceOver transcription box
+<img class="large frame" style="width:100%;" alt= "animated image of the instructions described above" src="/spring2022/assets/images/labs/lab09/mac-voiceover-close.gif" />
+
+### Windows Narrator Instructions
+#### Turn on Narrator
+Open the Start menu, search for Narrator, enable and **do not close** the Narrator window
+<img class="large frame" style="width:100%;" alt= "animated image of the instructions described above" src="/spring2022/assets/images/labs/lab09/windows-narrator-open.gif" />    
+
+#### Turn off Narrator
+Pull up the Narrator window and click Exit Narrator. If you've closed this window, press the Windows logo key + Ctrl + Enter on your keyboard. In earlier versions of Windows, you may need to press Windows logo key + Enter.
+<img class="large frame" style="width:100%;" alt= "animated image of the instructions described above" src="/spring2022/assets/images/labs/lab09/windows-narrator-close.gif" />    
 
 
 ## 5. (Optional) Experiment with ngrok
