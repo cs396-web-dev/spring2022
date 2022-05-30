@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import {getAccessTokenCookie, setAccessTokenCookie} from './utils';
+import {hasCsrfToken, setAccessTokenCookie} from './utils';
 
 function renderApp() {
     ReactDOM.render(

@@ -3,7 +3,7 @@ layout: assignment-two-column
 title: React
 type: lab
 abbreviation: Lab 10
-draft: 1
+draft: 0
 num: 10
 points: 5
 due_date: 2022-06-03
@@ -70,8 +70,7 @@ Your React client will rely on the REST API Endpoints you made in Homework 3 & 5
 1. Download `lab10.zip`, unzip it, and open the folder in VSCode.
 1. In another command line window/tab, navigate to the `lab10` folder that you just created and install the required packages with `npm install`. 
     * You will need to install npm if you haven't already (see [Lecture 19](../lectures/lecture19))
-1. Then, run the server locally using `npm start`. 
-
+1. Then, run the server locally using `npm start`
 
 > ### Tips
 > If you're running into any errors with fetch requests, you may have a few minor bugs in your REST API Endpoint. To verify (*Is the bug in my React code or in my API?*), try running your code using the course API by updating your React app's `proxy` url address in `package.json` to: <a href="https://photo-app-secured.herokuapp.com/" target="_blank">https://photo-app-secured.herokuapp.com/</a>.
@@ -89,7 +88,7 @@ Try building your React App by issuing `npm run build` on the command line. The 
 ### Step 1: Component Hierarchy
 As described in the <a href="https://reactjs.org/docs/thinking-in-react.html" target="_blank">Thinking in React</a> piece, it is important to be able to look at a wireframe / mockup and consider what might constitute a component (keeping in mind that components can have child components).
 
-Given (a) the starter `App.js` file we have given you and (b) what you already know about the "Photo App" app you made in Homework 4, think about how you might break up this web app into different components, where each one does a small job within the larger application:
+Given (a) the starter `App.js` file we have given you and (b) what you already know about the "Photo App" app you made in Homework 4, think about how you might break up this web app into different components, where each component does a small job within the larger application:
 
 ```jsx
 import React from 'react';
@@ -278,11 +277,11 @@ Following the same strategy you used in Step 4, create a `BookmarkButton` compon
 {:#step6}
 ### Step 6. Accessibility
 
-#### A. Accessibility Questionnaire 
-This quarter, we assigned a few accessibility activities -- to encourage you to think about how people might interact with your applications without mouse or using a screen reader. To reflect on this process, please fill out the Accessibility Questionnaire (Link TBD).
+#### Accessibility Questionnaire 
+This quarter, we assigned a few accessibility activities -- to encourage you to think about how people might interact with your applications without mouse or using a screen reader. To reflect on this process, please fill out the <a href="https://forms.gle/3xAUsKk8fduZStoS7">Accessibility Questionnaire</a>.
 
-#### B. Accessibility Research Study
-We also wanted to invite you to participate in a research study -- to examine and reflect on how to better teach students about accessibility within the software development process. Please fill out this Consent to participate in research form (Link TBD) to let us know whether or not you are willing participate in this study. Participation is **totally optional.** 
+#### Accessibility Research Study
+We also wanted to invite you to participate in a research study -- to examine and reflect on how to better teach students about accessibility within the software development process. Please fill out this <a href="https://forms.gle/4pd9tfLbkPMubVr3A">Consent to participate in research</a> form to let us know whether or not you are willing participate in this study. Participation is **optional.**
 
 ## What to Turn In
 When you're done, zip your `lab10` directory and submit your zip file to Canvas. Please **DO NOT** include your `node_modules` in the zip file (which will add hundreds of megabytes to your zip file).

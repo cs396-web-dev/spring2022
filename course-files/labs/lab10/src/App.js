@@ -1,5 +1,6 @@
 import React from 'react';
 
+{/* TODO: Break up the HTML below into a series of React components. */}
 class App extends React.Component {  
 
     render () {

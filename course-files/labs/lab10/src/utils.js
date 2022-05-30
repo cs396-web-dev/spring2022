@@ -37,28 +37,32 @@ export function setAccessTokenCookie(username, password, callback) {
         .then(response => response.json())
         .then(data => {
             const token = data.access_token;
-            setCookie('access_token_cookie', token); 
+            setCookie('access_token_cookie_js', token); 
             callback();
         });
 }
 
+export function hasCsrfToken () {
+    return getCookie('csrf_access_token'); // || token;
+}
+
 export function getAccessTokenCookie () {
-    return getCookie('access_token_cookie'); // || token;
+    return getCookie('access_token_cookie_js'); // || token;
 }
 
 export function getHeaders () {
-    const access_token_cookie = getCookie('access_token_cookie');
+    const access_token_cookie_js = getCookie('access_token_cookie_js');
     const csrf_access_token = getCookie('csrf_access_token');
     let headers;
-    if (csrf_access_token) {
+    if (csrf_access_token && window.location.port !== '3000') {
         headers = {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': csrf_access_token
         };
-    } else if (access_token_cookie) {
+    } else if (access_token_cookie_js) {
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + access_token_cookie
+            'Authorization': 'Bearer ' + access_token_cookie_js
         };
     } else {
         console.error('Neither access_token_cookie nor csrf_access_token found')
