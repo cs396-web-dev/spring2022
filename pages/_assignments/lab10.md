@@ -23,14 +23,16 @@ due_date: 2022-06-03
     }
 </style>
 
-<a class="nu-button" href="/spring2022/course-files/labs/lab09.zip">lab09.zip<i class="fas fa-download" aria-hidden="true"></i></a>
+<a class="nu-button" href="/spring2022/course-files/labs/lab10.zip">lab10.zip<i class="fas fa-download" aria-hidden="true"></i></a>
 
-> ## Update
+<!-- > ## Update
 > Sarah has created a video walkthrough if it's helpful!
-> * <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2a57e77b-7baa-49b1-97bb-ae550144a73a" target="_blank">Lab 09 Video Walkthrough</a>
+> * <a href="#" target="_blank">Lab 10 Video Walkthrough</a> -->
 
 > ## Required Readings
 > Before beginning this week's lab, please complete the <a href="https://reactjs.org/docs/hello-world.html" target="_blank">React Step-by-Step Guide</a>. It will take you and hour, but if you're new to React it's an hour well spent. It will be impossible for you to work effectively in React without understanding the core conventions and workflow, including:
+
+{:.compact}
 > * <a href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">JSX</a>
 > * <a href="https://reactjs.org/docs/components-and-props.html" target="_blank">Components and props</a>
 > * <a href="https://reactjs.org/docs/state-and-lifecycle.html" target="_blank">State and lifecycle</a>
@@ -43,6 +45,7 @@ due_date: 2022-06-03
 ## Instructions
 In this week's lab, you will be re-implementing a subset of your Photo App UI using React. The following 5 tasks are required in order for you to get full credit for the lab:
 
+{:.compact}
 1. [Create a component hierarchy](#step1)
 2. [Create stubs for each component](#step2)
 3. [Implement the "Posts" and "Post" components](#step3)
@@ -52,22 +55,26 @@ In this week's lab, you will be re-implementing a subset of your Photo App UI us
 
 
 ## Set Up
-Download `lab09.zip`, unzip it, and open the folder in VSCode.
 
-From your command line, navigate to the `lab09` directory and install the required packages with `npm install`. Then, run the server locally using `npm start`. 
+### REST API
+Your React client will rely on the REST API Endpoints you made in Homework 3 & 5. Therefore, you need to ensure that you're running your flask application:
+
+{:.compact}
+1. Navigate to your `photo-app` directory. 
+1. Activate your virtual environment
+1. Start the server: `flask run`
+
+### React Client
+
+{:.compact}
+1. Download `lab10.zip`, unzip it, and open the folder in VSCode.
+1. In another command line window/tab, navigate to the `lab10` folder that you just created and install the required packages with `npm install`. 
+    * You will need to install npm if you haven't already (see [Lecture 19](../lectures/lecture19))
+1. Then, run the server locally using `npm start`. 
+
 
 > ### Tips
-> * If you're running into any errors with fetch requests, you may have a few minor bugs in your REST API Endpoint. To verify (*Is the bug in my React code or in my API?*), try running your code using the course API by updating your React app's `proxy` url address in `package.json` to: <a href="https://photo-app-secured.herokuapp.com/" target="_blank">https://photo-app-secured.herokuapp.com/</a>.
-> * If you're switching between the course API and your API to debug, note that you'll either have to clear out your `access_token_cookie` manually (by physically deleting it using the Application panel of your browswer's developer tools) or else use the same JWT_SECRET as the course application (set in your `.env` file), which is **MY_SECRET** (e.g., `JWT_SECRET=MY_SECRET`).
-> * By default, your JWT token will time out every 15 minutes. To make your life easier, consider extending the life of your JWT token by adding the code below to your `app.py` file: 
-
-```python
-# Import timedelta at the top:
-from datetime import timedelta
-
-# Put this setting with all of your other JWT settings:
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=30)
-```
+> If you're running into any errors with fetch requests, you may have a few minor bugs in your REST API Endpoint. To verify (*Is the bug in my React code or in my API?*), try running your code using the course API by updating your React app's `proxy` url address in `package.json` to: <a href="https://photo-app-secured.herokuapp.com/" target="_blank">https://photo-app-secured.herokuapp.com/</a>.
 
 
 ### Deployment Notes
@@ -255,7 +262,7 @@ This instruction tells React that when you issue a request to, say, `/api/posts`
 
 {:#step4}
 ### Step 4. Implement the LikeButton Components
-Recall from HW4 that when the user clicks the "like button," a request is issued to the `/api/posts/<post_id>/likes` endpoint to either create or delete a like entry in the `likes_posts` table. This update causes a change to the post's information (# of likes), which needs to be re-fetched from the server and re-displayed. In this exercise, you will create a brand new `LikeButton` component, whose job it will be to issue Like/Unlike requests to the server, and to draw the heart.
+Recall from HW4 that when the user clicks the "like button," a request is issued to the `/api/posts/likes` endpoint to either create or delete a like entry in the `likes_posts` table. This update causes a change to the post's information (# of likes), which needs to be re-fetched from the server and re-displayed. In this exercise, you will create a brand new `LikeButton` component, whose job it will be to issue Like/Unlike requests to the server, and to draw the heart.
 
 The `LikeButton` also needs to notify the `Post` component to redraw after it fetches data from the server. Therefore, you're going to have to figure out how to communicate between your components. When you click on the heart in your `LikeButton` component, how can notify your `Post` component to requery the server and re-render? To learn how this might be done, re-read the <a href="https://reactjs.org/docs/lifting-state-up.html" target="_blank">lifting up state</a> page, which provides guidance. The strategy discussed involves:
 
@@ -269,17 +276,18 @@ The `LikeButton` also needs to notify the `Post` component to redraw after it fe
 Following the same strategy you used in Step 4, create a `BookmarkButton` component. This component's job is to draw the bookmark icon, issue bookmark/unbookmark requests to the `/api/bookmarks` endpoint, and to notify the `Post` component that it needs to re-fetch and redraw the post.
 
 {:#step6}
-### Step 6. Fill Out the Accessibility Questionnaire
+### Step 6. Accessibility
+
 #### A. Accessibility Questionnaire 
-This quarter, we assigned a few accessibility activities -- to encourage you to think about how people might interact with your applications without mouse or using a screen reader. To reflect on this process, please fill out the <a href="https://t.ly/SK2i" target="_blank">Accessibility Questionnaire</a>.
+This quarter, we assigned a few accessibility activities -- to encourage you to think about how people might interact with your applications without mouse or using a screen reader. To reflect on this process, please fill out the Accessibility Questionnaire (Link TBD).
 
 #### B. Accessibility Research Study
-We also wanted to invite you to participate in a research study -- to examine and reflect on how to better teach students about accessibility within the software development process. Please fill out this <a href="https://t.ly/x5M7" target="_blank">Consent to participate in research form</a> to let us know whether or not you are willing participate in this study. Participation is **totally optional.** 
+We also wanted to invite you to participate in a research study -- to examine and reflect on how to better teach students about accessibility within the software development process. Please fill out this Consent to participate in research form (Link TBD) to let us know whether or not you are willing participate in this study. Participation is **totally optional.** 
 
 ## What to Turn In
-When you're done, zip your `lab09` directory and submit your zip file to Canvas. Please **DO NOT** include your `node_modules` in the zip file (which will add hundreds of megabytes to your zip file).
+When you're done, zip your `lab10` directory and submit your zip file to Canvas. Please **DO NOT** include your `node_modules` in the zip file (which will add hundreds of megabytes to your zip file).
 
 > ### Appreciations
 > And while you're at it, please take a moment to thank  / write a note to a peer mentor who helped you in some way (even if you just take 30 seconds to do it). Peer mentors are students too, and most of them do waaaay more than what is officially asked of them in order to support you. This form is completely anonymous.
 > 
-> <a href="https://forms.gle/39oWerrVYaasgNd28" target="_blank">https://forms.gle/39oWerrVYaasgNd28</a>
+> <a href="https://forms.gle/zXdxaBik4suPifCA9" target="_blank">https://forms.gle/zXdxaBik4suPifCA9</a>
