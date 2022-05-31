@@ -21,13 +21,39 @@ due_date: 2022-06-03
         min-width: 200px; !important;
         width: auto !important;
     }
+
+
+    blockquote.updates {
+        background-color: #d4edda;
+        border: solid 1px #c3e6cb;
+    }
+    blockquote.updates h2, 
+    blockquote.updates p, 
+    blockquote.updates li, 
+    blockquote.updates a {
+        color: #155724;
+    }
+    blockquote.updates h2 {
+        border-bottom: solid 1px #155724;
+    }
+    blockquote.updates a:hover {
+        background-color: transparent;
+    }
 </style>
 
 <a class="nu-button" href="/spring2022/course-files/labs/lab10.zip">lab10.zip<i class="fas fa-download" aria-hidden="true"></i></a>
 
-<!-- > ## Update
-> Sarah has created a video walkthrough if it's helpful!
-> * <a href="#" target="_blank">Lab 10 Video Walkthrough</a> -->
+{:.updates}
+> ## Update
+> Sarah has created a series of video walkthroughs if it helps! Just to manage expectations: this is not professional quality, and I confuse myself in Video #3!
+>
+> {:.compact}
+> 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=67e88877-0e78-4dd5-b3c0-aea60100d5cc" target="_blank">Introduction</a>
+> 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0a822955-ad33-4a5f-842a-aea601059755" target="_blank">Component Heirarchy</a>
+> 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f8e355ae-9dfb-4530-a015-aea601095939" target="_blank">NavBar & Posts Functionality</a> (this one's a little rough)
+> 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=04303a30-2358-4c0e-a9f4-aea60112e0a4" target="_blank">Like / Unlike</a>
+> 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a15db53-229c-4c24-84ec-aea60118675e" target="_blank">Getting Components to Notify One Another</a>
+
 
 > ## Required Readings
 > Before beginning this week's lab, please complete the <a href="https://reactjs.org/docs/hello-world.html" target="_blank">React Step-by-Step Guide</a>. It will take you and hour, but if you're new to React it's an hour well spent. It will be impossible for you to work effectively in React without understanding the core conventions and workflow, including:
