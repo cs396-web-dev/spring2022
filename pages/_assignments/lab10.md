@@ -49,7 +49,7 @@ due_date: 2022-06-03
 >
 > {:.compact}
 > 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=67e88877-0e78-4dd5-b3c0-aea60100d5cc" target="_blank">Introduction</a>
-> 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0a822955-ad33-4a5f-842a-aea601059755" target="_blank">Component Heirarchy</a>
+> 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0a822955-ad33-4a5f-842a-aea601059755" target="_blank">Component Hierarchy</a>
 > 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f8e355ae-9dfb-4530-a015-aea601095939" target="_blank">NavBar & Posts Functionality</a> (this one's a little rough)
 > 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=04303a30-2358-4c0e-a9f4-aea60112e0a4" target="_blank">Like / Unlike</a>
 > 1. <a href="https://northwestern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a15db53-229c-4c24-84ec-aea60118675e" target="_blank">Getting Components to Notify One Another</a>
